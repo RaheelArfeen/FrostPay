@@ -1,20 +1,22 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { CircleUser, Menu, X } from 'lucide-react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { toast } from 'sonner';
 
 const Navbar = () => {
   const { logOut, loading } = useContext(AuthContext);
   const { user } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
   // Handle logout
   const handleLogout = () => {
-    logOut();
-    navigate('/');
+    setTimeout(() => {
+      logOut();
+      toast.success('Successfully logged out!')
+    }, 300);
   };
 
   useEffect(() => {
@@ -113,11 +115,11 @@ const Navbar = () => {
                 <div className="border-t border-gray-200 pt-4 mt-4">
                   <div className="flex items-center px-3 pb-3">
                   <div
-                      className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
-                      onClick={() => setDropdownOpen(!dropdownOpen)}
-                    >
-                      <img src={user ? user.photoURL : ''} alt={user.displayName} />
-                    </div>
+                  className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                >
+                  <img src={user ? user.photoURL : ''} alt={user.displayName} />
+                </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">{user.displayName || 'User'}</div>
                       <div className="text-sm font-medium text-gray-500">{user.email}</div>

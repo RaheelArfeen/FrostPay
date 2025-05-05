@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
 
-const Login = ({ onRegister, isLoading = false }) => {
+const Login = ({ onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
@@ -30,12 +32,12 @@ const Login = ({ onRegister, isLoading = false }) => {
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({
-        prompt: 'select_account'
+      prompt: 'select_account'
     });
 
     signInWithPopup(auth, provider)
       .then(() => {
-        // Redirect or notify success
+        navigate('/');
       })
       .catch(() => {
         setErrors({ general: 'Google sign-in failed. Please try again.' });
@@ -48,10 +50,15 @@ const Login = ({ onRegister, isLoading = false }) => {
 
     try {
       setErrors({});
+      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
-      // Redirect or notify success
+
+      setTimeout(() => {
+        navigate('/');
+        setLoading(false);
+      }, 300); // <-- 300ms delay
     } catch (error) {
-      console.error('Login error:', error);
+      setLoading(false);
       if (error.code === 'auth/user-not-found') {
         setErrors({ email: 'No user found with this email' });
       } else if (error.code === 'auth/wrong-password') {
@@ -85,6 +92,7 @@ const Login = ({ onRegister, isLoading = false }) => {
                   ? 'border-red-500 focus:ring-red-200'
                   : 'border-gray-200 focus:border-indigo-500 focus:ring-indigo-200'
               } focus:ring-2 focus:ring-opacity-50 outline-none transition duration-200`}
+              disabled={loading}
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -99,6 +107,7 @@ const Login = ({ onRegister, isLoading = false }) => {
                 type="button"
                 onClick={() => alert('Reset password functionality')}
                 className="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition"
+                disabled={loading}
               >
                 Forgot Password?
               </button>
@@ -116,11 +125,13 @@ const Login = ({ onRegister, isLoading = false }) => {
                     ? 'border-red-500 focus:ring-red-200'
                     : 'border-gray-200 focus:border-indigo-500 focus:ring-indigo-200'
                 } focus:ring-2 focus:ring-opacity-50 outline-none transition duration-200 pr-12`}
+                disabled={loading}
               />
               <button
                 type="button"
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 onClick={() => setShowPassword(!showPassword)}
+                disabled={loading}
               >
                 {showPassword ? (
                   <EyeOff size={20} className="transition duration-200" />
@@ -138,9 +149,9 @@ const Login = ({ onRegister, isLoading = false }) => {
           <button
             type="submit"
             className="w-full bg-[#3A63D8] text-white py-3 rounded-lg font-medium hover:bg-[#2A48B5] transition duration-200 my-4 disabled:opacity-50"
-            disabled={isLoading}
+            disabled={loading}
           >
-            {isLoading ? 'Signing in...' : 'Log In'}
+            {loading ? 'Logging in...' : 'Log In'}
           </button>
         </form>
 
@@ -161,6 +172,7 @@ const Login = ({ onRegister, isLoading = false }) => {
           type="button"
           onClick={handleGoogleLogin}
           className="w-full flex items-center justify-center gap-2 border border-gray-300 py-3 rounded-lg hover:bg-gray-100 transition"
+          disabled={loading}
         >
           <svg width="20" height="20" viewBox="0 0 24 24">
             <path
