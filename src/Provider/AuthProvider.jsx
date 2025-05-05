@@ -1,4 +1,3 @@
-// src/context/AuthProvider.js
 import React, { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.init";
 import {
@@ -55,14 +54,26 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         const { displayName, email, photoURL, uid } = currentUser;
-        setUser({ displayName, email, photoURL, uid });
+        const userData = { displayName, email, photoURL, uid };
+        setUser(userData);
+        // Persist user data in localStorage
+        localStorage.setItem("user", JSON.stringify(userData));
       } else {
         setUser(null);
+        localStorage.removeItem("user");
       }
       setLoading(false);
     });
 
     return () => unsubscribe();
+  }, []);
+
+  // Load user from localStorage on initial load
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
   }, []);
 
   const authData = {

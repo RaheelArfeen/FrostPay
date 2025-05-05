@@ -8,7 +8,7 @@ const Root = () => {
         <div className='flex flex-col justify-between min-h-screen'>
             <Header></Header>
             <Outlet></Outlet>
-            <div className='bg-[#1A1F2C]'>
+            <div className='bg-[#1A1F2C] mt-20'>
                 <Footer></Footer>
             </div>
         </div>

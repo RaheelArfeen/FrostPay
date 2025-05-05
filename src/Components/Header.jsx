@@ -71,7 +71,6 @@ const Navbar = () => {
                 >
                   <img src={user ? user.photoURL : ''} alt={user.displayName} />
                 </div>
-
                 {dropdownOpen && (
                   <div className="absolute right-0 w-48 bg-white shadow-lg border border-gray-200 rounded-md z-50">
                     <div className='py-2 px-3 border-b border-gray-200 text-sm font-semibold'>My Account</div>
@@ -114,12 +113,12 @@ const Navbar = () => {
               {user ? (
                 <div className="border-t border-gray-200 pt-4 mt-4">
                   <div className="flex items-center px-3 pb-3">
-                  <div
-                  className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                >
-                  <img src={user ? user.photoURL : ''} alt={user.displayName} />
-                </div>
+                    <div
+                      className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    >
+                      <img src={user ? user.photoURL : ''} alt={user.displayName} />
+                    </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">{user.displayName || 'User'}</div>
                       <div className="text-sm font-medium text-gray-500">{user.email}</div>
