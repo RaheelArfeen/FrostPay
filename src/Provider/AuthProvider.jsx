@@ -1,63 +1,80 @@
+// src/context/AuthProvider.js
 import React, { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.init";
-export const AuthContext = createContext();
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
 
+export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(loading, user);
-
+  // Create account with email and password
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  // Sign in with email and password
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  // Update user's profile
   const updateUser = (updatedData) => {
     return updateProfile(auth.currentUser, updatedData);
   };
 
+  // Google Sign-In
+  const signInWithGoogle = () => {
+    setLoading(true);
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    return signInWithPopup(auth, provider);
+  };
+
+  // Logout
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
+  // Auth state observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser) {
+        const { displayName, email, photoURL, uid } = currentUser;
+        setUser({ displayName, email, photoURL, uid });
+      } else {
+        setUser(null);
+      }
       setLoading(false);
     });
-    return () => {
-      unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
   const authData = {
     user,
-    setUser,
-    createUser,
-    logOut,
-    signIn,
     loading,
-    setLoading,
+    createUser,
+    signIn,
     updateUser,
+    logOut,
+    signInWithGoogle,
   };
 
-  // Wrap children with the context provider correctly
   return (
     <AuthContext.Provider value={authData}>
       {children}

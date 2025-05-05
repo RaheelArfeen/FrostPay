@@ -1,18 +1,19 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { Menu, X } from 'lucide-react';
+import { CircleUser, Menu, X } from 'lucide-react';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { logOut, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
   // Handle logout
-  const handleLogout = async () => {
-    await logOut();
+  const handleLogout = () => {
+    logOut();
     navigate('/');
   };
 
@@ -33,14 +34,14 @@ const Navbar = () => {
         setDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
   if (loading) {
-    return <span className="loading loading-spinner loading-lg mx-auto mt-4"></span>; // Show loading state until auth is resolved
+    return <span className="loading loading-spinner loading-lg mx-auto mt-4"></span>;
   }
 
   return (
@@ -66,11 +67,7 @@ const Navbar = () => {
                   className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 >
-                  <img
-                    src={user.photoURL || ''}
-                    alt={user.displayName || 'User'}
-                    className="h-full w-full object-cover"
-                  />
+                  <img src={user ? user.photoURL : ''} alt={user.displayName} />
                 </div>
 
                 {dropdownOpen && (
@@ -115,12 +112,11 @@ const Navbar = () => {
               {user ? (
                 <div className="border-t border-gray-200 pt-4 mt-4">
                   <div className="flex items-center px-3 pb-3">
-                    <div className="h-10 w-10 rounded-full overflow-hidden border border-gray-300">
-                      <img
-                        src={user.photoURL || ''}
-                        alt={user.displayName || 'User'}
-                        className="h-full w-full object-cover"
-                      />
+                  <div
+                      className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    >
+                      <img src={user ? user.photoURL : ''} alt={user.displayName} />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">{user.displayName || 'User'}</div>
