@@ -30,16 +30,26 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // Update user's profile
-  const updateUser = (updatedData) => {
-    return updateProfile(auth.currentUser, updatedData);
+  // Update user's profile and update user state immediately
+  const updateUser = async (updatedData) => {
+    try {
+      await updateProfile(auth.currentUser, updatedData);
+      // Manually update the user state with the new profile data
+      const { displayName, email, photoURL, uid } = auth.currentUser;
+      const updatedUser = { displayName, email, photoURL, uid };
+      
+      setUser(updatedUser); // Update user state
+      localStorage.setItem("user", JSON.stringify(updatedUser)); // Update localStorage
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   // Google Sign-In
   const signInWithGoogle = () => {
     setLoading(true);
     const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
+    provider.setCustomParameters({ prompt: "select_account" });
     return signInWithPopup(auth, provider);
   };
 

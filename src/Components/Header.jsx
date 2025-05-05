@@ -1,21 +1,20 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router';
-import { CircleUser, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'sonner';
 
 const Navbar = () => {
-  const { logOut, loading } = useContext(AuthContext);
-  const { user } = useContext(AuthContext)
+  const { logOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Handle logout
   const handleLogout = () => {
     setTimeout(() => {
       logOut();
-      toast.success('Successfully logged out!')
+      toast.success('Successfully logged out!');
     }, 300);
   };
 
@@ -42,12 +41,8 @@ const Navbar = () => {
     };
   }, []);
 
-  if (loading) {
-    return <span className="loading loading-spinner loading-lg mx-auto mt-4"></span>;
-  }
-
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50  h-[65px]">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -69,21 +64,27 @@ const Navbar = () => {
                   className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 >
-                  <img src={user ? user.photoURL : ''} alt={user.displayName} />
+                  {user?.photoURL ? (
+                    <img src={user.photoURL} alt={user.displayName} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="h-full w-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-lg">
+                      {user?.displayName ? user.displayName.charAt(0).toUpperCase() : 'U'}
+                    </div>
+                  )}
                 </div>
                 {dropdownOpen && (
                   <div className="absolute right-0 w-48 bg-white shadow-lg border border-gray-200 rounded-md z-50">
-                    <div className='py-2 px-3 border-b border-gray-200 text-sm font-semibold'>My Account</div>
+                    <div className="py-2 px-3 border-b border-gray-200 text-sm font-semibold">My Account</div>
                     <div className="p-1 text-sm border-b border-gray-200">
-                      <div className='hover:bg-gray-100 px-2 py-1.5 transition rounded-md'>
+                      <div className="hover:bg-gray-100 px-2 py-1.5 transition rounded-md">
                         Balance: ৳{user.balance ? user.balance.toLocaleString() : '0'}
                       </div>
                     </div>
                     <Link to="/profile" className="block px-1 pt-1 text-sm">
-                      <div className='hover:bg-gray-100 px-2 py-1 rounded-md transition'>Profile</div>
+                      <div className="hover:bg-gray-100 px-2 py-1 rounded-md transition">Profile</div>
                     </Link>
                     <button onClick={handleLogout} className="block px-1 pb-1 text-sm w-full text-left">
-                      <div className='hover:bg-gray-100 px-2 py-1 rounded-md transition'>Log Out</div>
+                      <div className="hover:bg-gray-100 px-2 py-1 rounded-md transition">Log Out</div>
                     </button>
                   </div>
                 )}
@@ -117,7 +118,13 @@ const Navbar = () => {
                       className="rounded-full h-9 w-9 overflow-hidden border border-gray-300 cursor-pointer hover:scale-110 transition"
                       onClick={() => setDropdownOpen(!dropdownOpen)}
                     >
-                      <img src={user ? user.photoURL : ''} alt={user.displayName} />
+                      {user?.photoURL ? (
+                        <img src={user.photoURL} alt={user.displayName} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="h-full w-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-lg">
+                          {user?.displayName ? user.displayName.charAt(0).toUpperCase() : 'U'}
+                        </div>
+                      )}
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">{user.displayName || 'User'}</div>
@@ -141,4 +148,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;

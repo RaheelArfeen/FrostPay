@@ -6,15 +6,22 @@ const UpdateProfile = () => {
   const { user, updateUser } = useContext(AuthContext);
   const [name, setName] = useState(user?.displayName || '');
   const [photoURL, setPhotoURL] = useState(user?.photoURL || '');
+  const [preview, setPreview] = useState(user?.photoURL || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+
+  const handleURLChange = (e) => {
+    const url = e.target.value;
+    setPhotoURL(url);
+    setPreview(url);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      await updateUser({ displayName: name, photoURL });
+      await updateUser({ displayName: name, photoURL: preview });
       navigate('/profile');
     } catch (error) {
       console.error('Failed to update profile:', error);
@@ -33,9 +40,9 @@ const UpdateProfile = () => {
 
         <div className="flex justify-center mb-6">
           <div className="h-24 w-24 rounded-full overflow-hidden border border-gray-300">
-            {photoURL || user?.photoURL ? (
+            {preview ? (
               <img
-                src={photoURL ? user.photoURL : <p>u</p>}
+                src={preview}
                 alt={name || 'User'}
                 className="h-full w-full object-cover"
               />
@@ -70,7 +77,8 @@ const UpdateProfile = () => {
               id="photoURL"
               type="url"
               value={photoURL}
-              onChange={(e) => setPhotoURL(e.target.value)}
+              onChange={handleURLChange}
+              placeholder="https://example.com/photo.jpg"
               className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
