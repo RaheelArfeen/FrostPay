@@ -5,9 +5,14 @@ import {
   RouterProvider,
 } from "react-router";
 import { router } from './Router/router';
+import AuthProvider from './Provider/AuthProvider';
+import { Toaster } from 'sonner';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <Toaster position="bottom-right" />
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </StrictMode>,
 )
