@@ -9,7 +9,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import Bills from "../Pages/Bills";
 import Profile from "../Pages/Profile";
 import UpdateProfile from "../Pages/UpdateProfile";
-import { ProtectedRoute } from "../Components/Auth/ProtectedRoute";
+import { ProtectedRoute } from "../Provider/ProtectedRoute";
 
 export const router = createBrowserRouter([
     {

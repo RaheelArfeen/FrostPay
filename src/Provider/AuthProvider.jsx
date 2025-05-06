@@ -18,34 +18,30 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Create account with email and password
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // Sign in with email and password
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // Update user's profile and update user state immediately
   const updateUser = async (updatedData) => {
     try {
       await updateProfile(auth.currentUser, updatedData);
-      // Manually update the user state with the new profile data
+      
       const { displayName, email, photoURL, uid } = auth.currentUser;
       const updatedUser = { displayName, email, photoURL, uid };
       
-      setUser(updatedUser); // Update user state
-      localStorage.setItem("user", JSON.stringify(updatedUser)); // Update localStorage
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
 
-  // Google Sign-In
   const signInWithGoogle = () => {
     setLoading(true);
     const provider = new GoogleAuthProvider();
@@ -53,20 +49,18 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   };
 
-  // Logout
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  // Auth state observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         const { displayName, email, photoURL, uid } = currentUser;
         const userData = { displayName, email, photoURL, uid };
         setUser(userData);
-        // Persist user data in localStorage
+
         localStorage.setItem("user", JSON.stringify(userData));
       } else {
         setUser(null);
@@ -78,7 +72,6 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // Load user from localStorage on initial load
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {

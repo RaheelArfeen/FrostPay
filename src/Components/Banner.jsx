@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 import { Link } from 'react-router';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 
 import 'swiper/css';
@@ -32,10 +32,16 @@ const slides = [
 const Banner = () => {
   const { user: currentUser } = useContext(AuthContext);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isSlide, setIsSlide] = useState(false);
   const swiperRef = useRef(null);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsSlide(true), 100);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <div className="relative w-full">
+    <div className={`relative w-full transition-all duration-700 ease-out ${isSlide ? "translate-y-0 opacity-100" : 'translate-y-3 opacity-0'}`}>
       <Swiper
         modules={[Navigation, Pagination, A11y]}
         onSwiper={(swiper) => {
@@ -54,7 +60,7 @@ const Banner = () => {
             <div className="relative h-[500px] w-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#1A1F2C] to-transparent opacity-70 z-10"></div>
               <div
-                className="absolute inset-0 bg-cover bg-center z-0 transition-transform duration-700 scale-105"
+                className="absolute inset-0 bg-cover bg-center z-0 transition duration-700 scale-105"
                 style={{ backgroundImage: `url(${slide.image})` }}
               ></div>
               <div className="relative z-20 h-full flex items-center">
@@ -66,7 +72,7 @@ const Banner = () => {
                     <p className="text-lg text-white/90 mb-8">{slide.description}</p>
                     <Link
                       to={currentUser ? '/bills' : '/register'}
-                      className="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-transform hover:scale-105"
+                      className="inline-block px-6 py-3 bg-[#3A63D8] text-white rounded-md hover:bg-[#2A48B5] transition duration-400 hover:scale-105"
                     >
                       {currentUser ? 'Pay Bills Now' : 'Get Started'}
                     </Link>
@@ -81,7 +87,7 @@ const Banner = () => {
           className={`absolute top-1/2 left-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition ${
             activeIndex === 0
               ? 'bg-white text-black opacity-50 cursor-not-allowed'
-              : 'bg-white text-black'
+              : 'bg-white text-black cursor-pointer'
           }`}
           onClick={() => swiperRef.current?.slidePrev()}
           disabled={activeIndex === 0}
@@ -93,7 +99,7 @@ const Banner = () => {
           className={`absolute top-1/2 right-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition ${
             activeIndex === slides.length - 1
               ? 'bg-white text-black opacity-50 cursor-not-allowed'
-              : 'bg-white text-black'
+              : 'bg-white text-black cursor-pointer'
           }`}
           onClick={() => swiperRef.current?.slideNext()}
           disabled={activeIndex === slides.length - 1}
