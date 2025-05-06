@@ -14,10 +14,16 @@ import {
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
+// ✅ Helper to load balance safely
+const getInitialBalance = () => {
+  const stored = localStorage.getItem("userBalance");
+  return stored !== null && !isNaN(parseFloat(stored)) ? parseFloat(stored) : 0;
+};
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userBalance, setUserBalance] = useState(10000);
+  const [userBalance, setUserBalance] = useState(getInitialBalance); // ✅ safe init
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -54,6 +60,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // ✅ Watch auth state and sync user to localStorage
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -71,15 +78,9 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // ✅ Persist balance to localStorage on change
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedBalance = parseFloat(localStorage.getItem("userBalance"));
-    if (storedUser) setUser(storedUser);
-    if (!isNaN(storedBalance)) setUserBalance(storedBalance);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("userBalance", userBalance);
+    localStorage.setItem("userBalance", userBalance.toString());
   }, [userBalance]);
 
   const authData = {

@@ -41,6 +41,14 @@ const Navbar = () => {
     };
   }, []);
 
+  if (!user) {
+    return (
+      <div className="w-full h-[65px] flex justify-center items-center bg-white border-b border-gray-200 sticky top-0 z-50">
+        <span className="loading loading-spinner loading-md"></span>
+      </div>
+    );
+  }
+
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -77,7 +85,7 @@ const Navbar = () => {
                     <div className="py-2 px-3 border-b border-gray-200 text-sm font-semibold">My Account</div>
                     <div className="p-1 text-sm border-b border-gray-200">
                       <div className="hover:bg-gray-100 px-2 py-1.5 transition rounded-md">
-                        Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'} {/* Display userBalance */}
+                        Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'}
                       </div>
                     </div>
                     <Link to="/profile" className="block px-1 pt-1 text-sm">
@@ -131,7 +139,7 @@ const Navbar = () => {
                       <div className="text-sm font-medium text-gray-500">{user.email}</div>
                     </div>
                   </div>
-                  <div className="px-3 py-2 text-sm text-[#374151]">Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'}</div> {/* Display userBalance */}
+                  <div className="px-3 py-2 text-sm text-[#374151]">Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'}</div>
                   <button onClick={handleLogout} className="w-full mt-2 border px-4 py-2 rounded hover:scale-105 transition-transform">Log out</button>
                 </div>
               ) : (
