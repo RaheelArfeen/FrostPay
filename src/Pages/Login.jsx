@@ -56,7 +56,7 @@ const Login = ({ onRegister }) => {
       setTimeout(() => {
         navigate('/');
         setLoading(false);
-      }, 300); // <-- 300ms delay
+      }, 300);
     } catch (error) {
       setLoading(false);
       if (error.code === 'auth/user-not-found') {

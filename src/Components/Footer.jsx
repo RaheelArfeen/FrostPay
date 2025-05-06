@@ -4,14 +4,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-frost-900 text-white pt-16 pb-12">
+    <footer className="bg-frost-900 text-white py-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 to="/" className="text-[#ffffff] text-xl font-bold">
-              Frost<span className="text-[#3A63D8]">Pay</span>
+            <h3 className="text-xl font-bold mb-4">
+              Frost<span className="text-frost-400">Pay</span>
             </h3>
-            <p className="text-gray-300 pr-12">
+            <p className="text-gray-300">
               Simplifying bill payments with a clean, winter-fresh approach.
             </p>
           </div>
@@ -29,14 +29,14 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <address className="not-italic text-gray-300">
-              <p>Email: support@gmail.com</p>
+              <p>Email: support@frostpay.com</p>
               <p>Phone: +880 123 456 7890</p>
-              <p>Address: South Munshipara, Dinajpur, Bangladesh</p>
+              <p>Address: Ice Tower, Dhaka, Bangladesh</p>
             </address>
           </div>
         </div>
         
-        <div className="border-t border-gray-700 mt-8 pt-10 text-center text-gray-400">
+        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
           <p>© {currentYear} FrostPay. All rights reserved.</p>
         </div>
       </div>

@@ -6,9 +6,8 @@ const Profile = () => {
   const { user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Simulated balance and paidBills for demo
-  const userBalance = 5000; // Replace with your actual balance logic
-  const paidBills = [1, 2]; // Replace with your actual bills array
+  const userBalance = 5000;
+  const paidBills = [1, 2];
 
   if (loading) {
     return (

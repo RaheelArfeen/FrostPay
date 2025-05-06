@@ -1,15 +1,18 @@
 import React from 'react';
-import Header from '../Components/Header';
-import { Outlet } from 'react-router';
-import Footer from '../Components/Footer';
 import Banner from '../Components/Banner';
 import Partners from '../Components/HomeComponent/Partners';
+import Features from '../Components/HomeComponent/Features';
+import UserFeedback from '../Components/HomeComponent/UserFeedback';
+import BottomPart from '../Components/HomeComponent/BottomPart';
 
 const HomePage = () => {
     return (
         <div>
             <Banner></Banner>
             <Partners></Partners>
+            <Features></Features>
+            <UserFeedback></UserFeedback>
+            <BottomPart></BottomPart>
         </div>
     );
 };

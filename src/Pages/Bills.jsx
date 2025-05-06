@@ -1,66 +1,161 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router";
+import { Check, ChevronDown } from "lucide-react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Bills = () => {
-    const [partners, setPartners] = useState([]);
-    const [isVisible, setIsVisible] = useState(false);
+  const [bills, setBills] = useState([]);
+  const [filteredBills, setFilteredBills] = useState([]);
+  const [selectedType, setSelectedType] = useState("all");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
-    useEffect(() => {
-        fetch('/bills.json')
-            .then(res => res.json())
-            .then(data => setPartners(data))
-    }, []);
+  const { user } = useContext(AuthContext);
+  const paidBills = user?.paidBills || [];
 
-    useEffect(() => {
-        const timeout = setTimeout(() => setIsVisible(true), 100);
-        return () => clearTimeout(timeout);
-    }, []);
+  useEffect(() => {
+    fetch("/bills.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setBills(data);
+        setFilteredBills(data);
+      });
+  }, []);
 
+  useEffect(() => {
+    if (selectedType === "all") {
+      setFilteredBills(bills);
+    } else {
+      setFilteredBills(bills.filter((bill) => bill.bill_type === selectedType));
+    }
+  }, [selectedType, bills]);
 
-    return (
-        <section className={`py-16 bg-white transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Our Partner Organizations</h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {partners.length > 0 ? (
-                        partners.map((partner, index) => (
-                            <div
-                                key={index}
-                                className="flex flex-col rounded-xl border shadow-sm transition-transform hover:scale-105"
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <div className="p-6 flex-grow">
-                                    <div className="flex items-center mb-4">
-                                        <img
-                                            src={partner.icon}
-                                            alt={partner.bill_type}
-                                            className="w-12 h-12 mr-4"
-                                        />
-                                        <div>
-                                            <h3 className="font-semibold">{partner.organization}</h3>
-                                            <p className="text-sm text-gray-600 capitalize">{partner.bill_type}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="p-4 border-t">
-                                    <button
-                                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg"
-                                        disabled
-                                    >
-                                        Pay
-                                    </button>
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <div className="col-span-full text-center py-10">
-                            <p>No partner organizations found.</p>
-                        </div>
-                    )}
+  const billTypes = ["all", ...new Set(bills.map((bill) => bill.bill_type))];
+
+  const handleSelect = (type) => {
+    setSelectedType(type);
+    setIsDropdownOpen(false);
+    setTimeout(() => setDropdownVisible(false), 250);
+  };
+
+  const toggleDropdown = () => {
+    if (isDropdownOpen) {
+      setIsDropdownOpen(false);
+      setTimeout(() => setDropdownVisible(false), 250);
+    } else {
+      setDropdownVisible(true);
+      setTimeout(() => setIsDropdownOpen(true), 10);
+    }
+  };
+
+  return (
+    <div className="md:container mx-auto px-4 min-h-[600px] my-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">Utility Bills</h1>
+
+      <div className="mb-6 max-w-xs mx-auto relative">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Filter by Bill Type
+        </label>
+        <div
+          className="border border-gray-200 rounded-md py-2 px-4 cursor-pointer flex items-center justify-between"
+          onClick={toggleDropdown}
+        >
+          {selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}
+          <ChevronDown
+            className={`transition duration-400 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
+            strokeWidth={1}
+          />
+        </div>
+
+        {dropdownVisible && (
+          <div
+            className={`absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-md p-1.5 transform origin-top transition-all duration-300
+            ${isDropdownOpen ? "scale-y-100 opacity-100" : "scale-y-95 opacity-0 pointer-events-none"}`}
+          >
+            {billTypes.map((type) => (
+              <div
+                key={type}
+                onClick={() => handleSelect(type)}
+                className={`px-4 py-2 cursor-pointer rounded-md mb-1 flex items-center
+                  ${selectedType === type ? "bg-gray-200 font-semibold" : "hover:bg-gray-50"}`}
+              >
+                {selectedType === type && (
+                  <Check className="w-4 h-4 mr-2 text-green-600" />
+                )}
+                <span>{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {filteredBills.length > 0 ? (
+          filteredBills.map((bill) => (
+            <div
+              key={bill.id}
+              className="border border-gray-300 rounded-xl shadow p-6 flex flex-col justify-between relative bg-white hover:scale-102 hover:shadow-xl transition duration-500"
+            >
+              {paidBills.includes(bill.id) && (
+                <div className="absolute top-3 right-3 bg-green-500 text-white rounded-full p-1">
+                  <Check className="h-5 w-5" />
                 </div>
+              )}
+
+              <div className="flex items-center mb-4">
+                <img
+                  src={bill.icon}
+                  alt={bill.bill_type}
+                  className="w-12 h-12 mr-4"
+                />
+                <div>
+                  <h3 className="font-semibold">{bill.organization}</h3>
+                  <p className="text-sm text-gray-600 capitalize">
+                    {bill.bill_type}
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2 mb-4">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Amount:</span>
+                  <span className="font-medium">
+                    ৳{bill.amount.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Due Date:</span>
+                  <span className="font-medium">
+                    {new Date(bill["due-date"]).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+
+              {paidBills.includes(bill.id) ? (
+                <button
+                  className="w-full bg-green-500 text-white py-2 rounded cursor-not-allowed"
+                  disabled
+                >
+                  Paid
+                </button>
+              ) : (
+                <Link
+                  to={`/bills/${bill.id}`}
+                  className="block text-center bg-[#3A63D8] hover:bg-[#2A48B5] text-white py-2 rounded"
+                >
+                  Pay
+                </Link>
+              )}
             </div>
-        </section>
-    );
-    
+          ))
+        ) : (
+          <div className="col-span-full text-center py-10">
+            <p>No bills found for this type.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Bills;
