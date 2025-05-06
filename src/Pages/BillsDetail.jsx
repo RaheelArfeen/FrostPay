@@ -63,7 +63,7 @@ const BillsDetail = () => {
   };
 
   return (
-    <div className="page-container flex justify-center items-center">
+    <div className="md:container w-full mx-auto px-4 flex justify-center items-center">
       <div className="max-w-3xl w-full bg-white p-6 rounded-lg my-32 shadow-lg">
         <div className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -69,12 +69,18 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex justify-center gap-2">
             <Link
               to="/update-profile"
               className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
             >
               Update Profile
+            </Link>
+            <Link
+              to="/add-balance"
+              className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Add Balance
             </Link>
           </div>
         </div>

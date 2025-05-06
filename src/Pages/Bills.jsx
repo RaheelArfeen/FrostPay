@@ -44,7 +44,7 @@ const Bills = () => {
   };
 
   return (
-    <div className="md:container mx-auto px-4 min-h-[600px] my-8">
+    <div className="md:container w-full mx-auto px-4 min-h-[600px] my-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Utility Bills</h1>
 
       <div className="mb-6 max-w-xs mx-auto relative">
@@ -136,7 +136,7 @@ const Bills = () => {
               ) : (
                 <Link
                   to={`/bills/${bill.id}`}
-                  className="block text-center bg-[#3A63D8] hover:bg-[#2A48B5] text-white py-2 rounded"
+                  className="block text-center bg-[#3A63D8] hover:bg-[#3A63D8] transition text-white py-2 rounded"
                 >
                   Pay
                 </Link>
