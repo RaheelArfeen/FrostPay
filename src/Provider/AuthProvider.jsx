@@ -17,6 +17,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userBalance, setUserBalance] = useState(10000);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -31,10 +32,8 @@ const AuthProvider = ({ children }) => {
   const updateUser = async (updatedData) => {
     try {
       await updateProfile(auth.currentUser, updatedData);
-      
       const { displayName, email, photoURL, uid } = auth.currentUser;
       const updatedUser = { displayName, email, photoURL, uid };
-      
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
     } catch (error) {
@@ -51,6 +50,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem("userBalance");
     return signOut(auth);
   };
 
@@ -60,7 +60,6 @@ const AuthProvider = ({ children }) => {
         const { displayName, email, photoURL, uid } = currentUser;
         const userData = { displayName, email, photoURL, uid };
         setUser(userData);
-
         localStorage.setItem("user", JSON.stringify(userData));
       } else {
         setUser(null);
@@ -74,14 +73,20 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    const storedBalance = parseFloat(localStorage.getItem("userBalance"));
+    if (storedUser) setUser(storedUser);
+    if (!isNaN(storedBalance)) setUserBalance(storedBalance);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("userBalance", userBalance);
+  }, [userBalance]);
 
   const authData = {
     user,
     loading,
+    userBalance,
+    setUserBalance,
     createUser,
     signIn,
     updateUser,

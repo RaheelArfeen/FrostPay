@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'sonner';
 
 const Navbar = () => {
-  const { logOut } = useContext(AuthContext);
+  const { logOut, userBalance } = useContext(AuthContext); // Access userBalance from AuthContext
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -42,7 +42,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 h-[65px]">
+    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -77,7 +77,7 @@ const Navbar = () => {
                     <div className="py-2 px-3 border-b border-gray-200 text-sm font-semibold">My Account</div>
                     <div className="p-1 text-sm border-b border-gray-200">
                       <div className="hover:bg-gray-100 px-2 py-1.5 transition rounded-md">
-                        Balance: ৳{user.balance ? user.balance.toLocaleString() : '0'}
+                        Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'} {/* Display userBalance */}
                       </div>
                     </div>
                     <Link to="/profile" className="block px-1 pt-1 text-sm">
@@ -131,7 +131,7 @@ const Navbar = () => {
                       <div className="text-sm font-medium text-gray-500">{user.email}</div>
                     </div>
                   </div>
-                  <div className="px-3 py-2 text-sm text-[#374151]">Balance: ৳{user.balance ? user.balance.toLocaleString() : '0'}</div>
+                  <div className="px-3 py-2 text-sm text-[#374151]">Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'}</div> {/* Display userBalance */}
                   <button onClick={handleLogout} className="w-full mt-2 border px-4 py-2 rounded hover:scale-105 transition-transform">Log out</button>
                 </div>
               ) : (

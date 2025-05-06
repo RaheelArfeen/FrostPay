@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { Check, ChevronDown } from "lucide-react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Bills = () => {
-  const [bills, setBills] = useState([]);
+  const { bills } = useLoaderData();
   const [filteredBills, setFilteredBills] = useState([]);
   const [selectedType, setSelectedType] = useState("all");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,13 +14,8 @@ const Bills = () => {
   const paidBills = user?.paidBills || [];
 
   useEffect(() => {
-    fetch("/bills.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setBills(data);
-        setFilteredBills(data);
-      });
-  }, []);
+    setFilteredBills(bills);
+  }, [bills]);
 
   useEffect(() => {
     if (selectedType === "all") {

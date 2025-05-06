@@ -21,7 +21,7 @@ const UserFeedback = () => {
             What Our Users Say
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg transform transition-all duration-500 hover:shadow-xl">
+            <div className="p-6 rounded-lg transform transition-all duration-500 shadow-sm hover:shadow-xl">
               <div className="pt-6">
                 <div className="flex flex-col h-full">
                   <div className="mb-4 text-yellow-400 flex">
@@ -50,7 +50,7 @@ const UserFeedback = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-lg transform transition-all duration-500 hover:shadow-xl">
+            <div className="p-6 rounded-lg transform transition-all duration-500 shadow-sm hover:shadow-xl">
               <div className="pt-6">
                 <div className="flex flex-col h-full">
                   <div className="mb-4 text-yellow-400 flex">
@@ -81,7 +81,7 @@ const UserFeedback = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-lg hidden lg:block transform transition-all duration-500 hover:shadow-xl delay-200">
+            <div className="p-6 rounded-lg hidden lg:block transform transition-all duration-500 shadow-sm hover:shadow-xl">
               <div className="pt-6">
                 <div className="flex flex-col h-full">
                   <div className="mb-4 text-yellow-400 flex">
