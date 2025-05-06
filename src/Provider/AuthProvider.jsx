@@ -14,16 +14,15 @@ import {
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
-// ✅ Helper to load balance safely
 const getInitialBalance = () => {
   const stored = localStorage.getItem("userBalance");
-  return stored !== null && !isNaN(parseFloat(stored)) ? parseFloat(stored) : 0;
+  return stored !== null && !isNaN(parseFloat(stored)) ? parseFloat(stored) : 10000;
 };
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userBalance, setUserBalance] = useState(getInitialBalance); // ✅ safe init
+  const [userBalance, setUserBalance] = useState(getInitialBalance);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -56,11 +55,9 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
-    localStorage.removeItem("userBalance");
     return signOut(auth);
   };
 
-  // ✅ Watch auth state and sync user to localStorage
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -78,7 +75,6 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Persist balance to localStorage on change
   useEffect(() => {
     localStorage.setItem("userBalance", userBalance.toString());
   }, [userBalance]);
