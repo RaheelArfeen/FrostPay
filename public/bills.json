@@ -4,7 +4,7 @@
     "bill_type": "electricity",
     "icon": "https://img.icons8.com/fluency/96/electricity.png",
     "organization": "DESCO",
-    "amount": 1890,
+    "amount": 2080,
     "due-date": "2025-03-22T06:57:58.110Z"
   },
   {
@@ -12,7 +12,7 @@
     "bill_type": "gas",
     "icon": "https://img.icons8.com/fluency/96/gas-industry.png",
     "organization": "Titas Gas",
-    "amount": 1488,
+    "amount": 1640,
     "due-date": "2025-03-28T06:57:58.110Z"
   },
   {
@@ -20,7 +20,7 @@
     "bill_type": "water",
     "icon": "https://img.icons8.com/fluency/96/water.png",
     "organization": "WASA",
-    "amount": 950,
+    "amount": 1040,
     "due-date": "2025-03-25T06:57:58.110Z"
   },
   {
@@ -28,7 +28,7 @@
     "bill_type": "internet",
     "icon": "https://img.icons8.com/fluency/96/internet.png",
     "organization": "Link3",
-    "amount": 2500,
+    "amount": 2760,
     "due-date": "2025-04-01T06:57:58.110Z"
   },
   {
@@ -36,7 +36,7 @@
     "bill_type": "credit card",
     "icon": "https://img.icons8.com/fluency/96/bank-cards.png",
     "organization": "City Bank",
-    "amount": 3750,
+    "amount": 4120,
     "due-date": "2025-04-05T06:57:58.110Z"
   },
   {
@@ -44,7 +44,7 @@
     "bill_type": "tuition",
     "icon": "https://img.icons8.com/fluency/96/graduation-cap.png",
     "organization": "North South University",
-    "amount": 15000,
+    "amount": 16500,
     "due-date": "2025-03-15T06:57:58.110Z"
   },
   {
@@ -52,7 +52,7 @@
     "bill_type": "electricity",
     "icon": "https://img.icons8.com/fluency/96/electricity.png",
     "organization": "NESCO",
-    "amount": 1650,
+    "amount": 1800,
     "due-date": "2025-04-10T06:57:58.110Z"
   },
   {
@@ -60,7 +60,7 @@
     "bill_type": "water",
     "icon": "https://img.icons8.com/fluency/96/water.png",
     "organization": "DWASA",
-    "amount": 780,
+    "amount": 860,
     "due-date": "2025-04-15T06:57:58.110Z"
   },
   {
@@ -68,7 +68,7 @@
     "bill_type": "phone",
     "icon": "https://img.icons8.com/fluency/96/phone.png",
     "organization": "Grameenphone",
-    "amount": 850,
+    "amount": 930,
     "due-date": "2025-04-12T06:57:58.110Z"
   },
   {
@@ -76,7 +76,7 @@
     "bill_type": "insurance",
     "icon": "https://img.icons8.com/?size=100&id=CccIeNvx2axi&format=png&color=228BE6",
     "organization": "MetLife Insurance",
-    "amount": 2300,
+    "amount": 2530,
     "due-date": "2025-04-20T06:57:58.110Z"
   },
   {
@@ -84,7 +84,7 @@
     "bill_type": "rent",
     "icon": "https://img.icons8.com/fluency/96/cottage.png",
     "organization": "Gulshan Properties",
-    "amount": 25000,
+    "amount": 27600,
     "due-date": "2025-04-05T06:57:58.110Z"
   },
   {
@@ -92,7 +92,7 @@
     "bill_type": "streaming",
     "icon": "https://img.icons8.com/fluency/96/video-playlist.png",
     "organization": "Netflix",
-    "amount": 1200,
+    "amount": 1320,
     "due-date": "2025-04-25T06:57:58.110Z"
   }
 ]
