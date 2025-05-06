@@ -10,6 +10,10 @@ const Profile = () => {
   const [paidBills, setPaidBills] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     const storedBalance = localStorage.getItem('userBalance');
     if (storedBalance) {
       setUserBalance(Number(storedBalance));

@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'sonner';
 
 const Navbar = () => {
-  const { logOut, userBalance } = useContext(AuthContext); // Access userBalance from AuthContext
+  const { logOut, userBalance, loading } = useContext(AuthContext); // Access userBalance and loading from AuthContext
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -41,7 +41,7 @@ const Navbar = () => {
     };
   }, []);
 
-  if (!user) {
+  if (loading) {
     return (
       <div className="w-full h-[65px] flex justify-center items-center bg-white border-b border-gray-200 sticky top-0 z-50">
         <span className="loading loading-spinner loading-md"></span>

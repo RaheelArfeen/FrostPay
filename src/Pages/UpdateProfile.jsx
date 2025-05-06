@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 
@@ -15,6 +15,10 @@ const UpdateProfile = () => {
     setPhotoURL(url);
     setPreview(url);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

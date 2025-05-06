@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { PlusCircle, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
@@ -7,6 +7,10 @@ const AddBalance = () => {
   const { userBalance, setUserBalance } = useContext(AuthContext);
   const [amount, setAmount] = useState("");
   const [isAdding, setIsAdding] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleAddBalance = () => {
     const value = parseFloat(amount);

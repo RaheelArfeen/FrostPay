@@ -5,11 +5,15 @@ import { AuthContext } from "../Provider/AuthProvider";
 const BillsDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { userBalance, setUserBalance } = useContext(AuthContext); // Access userBalance from AuthContext
+  const { userBalance, setUserBalance } = useContext(AuthContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isPaid, setIsPaid] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {

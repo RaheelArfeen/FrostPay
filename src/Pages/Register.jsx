@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Eye, EyeOff, Check, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router';
 import {
@@ -24,6 +24,10 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
   const hasUppercase = /[A-Z]/.test(password);
   const hasLowercase = /[a-z]/.test(password);
   const hasMinLength = password.length >= 6;
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const validateForm = () => {
     const newErrors = {};

@@ -16,6 +16,10 @@ const Bills = () => {
   useEffect(() => {
     setFilteredBills(bills);
   }, [bills]);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     if (selectedType === "all") {
