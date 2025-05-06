@@ -31,7 +31,6 @@ const slides = [
 
 const Banner = () => {
   const { user: currentUser } = useContext(AuthContext);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isSlide, setIsSlide] = useState(false);
   const swiperRef = useRef(null);
 
@@ -48,10 +47,7 @@ const Banner = () => {
           swiperRef.current = swiper;
         }}
         spaceBetween={10}
-        onSlideChange={(swiper) => {
-          setActiveIndex(swiper.activeIndex);
-        }}
-        loop={false}
+        loop={true}
         speed={800}
         className="w-full h-[500px]"
       >
@@ -84,25 +80,15 @@ const Banner = () => {
         ))}
 
         <button
-          className={`absolute top-1/2 left-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition ${
-            activeIndex === 0
-              ? 'bg-white text-black opacity-50 cursor-not-allowed'
-              : 'bg-white text-black cursor-pointer'
-          }`}
+          className='absolute top-1/2 left-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition bg-white text-black cursor-pointer'
           onClick={() => swiperRef.current?.slidePrev()}
-          disabled={activeIndex === 0}
         >
           &#8592;
         </button>
 
         <button
-          className={`absolute top-1/2 right-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition ${
-            activeIndex === slides.length - 1
-              ? 'bg-white text-black opacity-50 cursor-not-allowed'
-              : 'bg-white text-black cursor-pointer'
-          }`}
+          className='absolute top-1/2 right-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition bg-white text-black cursor-pointer '
           onClick={() => swiperRef.current?.slideNext()}
-          disabled={activeIndex === slides.length - 1}
         >
           &#8594;
         </button>
