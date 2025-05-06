@@ -23,23 +23,6 @@ const BottomPart = () => {
           {currentUser ? "Go to Dashboard" : "Create Free Account"}
         </Link>
       </div>
-
-      <div className="absolute inset-0 z-0">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <div 
-            key={i}
-            className="absolute rounded-full bg-white/10 animate-pulse"
-            style={{
-              width: `${Math.random() * 200 + 50}px`,
-              height: `${Math.random() * 200 + 50}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${Math.random() * 3 + 2}s`,
-              animationDelay: `${Math.random() * 2}s`
-            }}
-          ></div>
-        ))}
-      </div>
     </section>
   );
 };
