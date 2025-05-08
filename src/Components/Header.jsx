@@ -139,7 +139,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div className="px-3 py-2 text-sm text-[#374151]"><span className='font-semibold'>Balance:</span> ৳{userBalance ? userBalance.toLocaleString() : '0'}</div>
-                  <div className="px-3 py-2 text-sm text-[#374151]"><span className='font-semibold'>Email:</span> {user.email}</div>
+                  <div className="px-3 py-2 text-sm text-[#374151]"><span className='font-semibold'>Email:</span> {user.email || 'example@gmail.com'}</div>
                   <button onClick={handleLogout} className="w-full mt-2 border px-4 py-2 rounded hover:scale-105 transition-transform">Log out</button>
                 </div>
               ) : (
