@@ -102,6 +102,8 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
   };
 
+  console.log(user);
+
   return (
     <AuthContext.Provider value={authData}>
       {children}

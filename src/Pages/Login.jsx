@@ -45,9 +45,11 @@ const Login = ({ onRegister }) => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then(() => {
-        navigate(from, { replace: true });
+      .then((result) => {
         toast.success('Successfully logged in with Google')
+        console.log(result.user);
+        navigate(from, { replace: true });
+        
       })
       .catch(() => {
         toast.error('Google sign-in failed. Please try again.')
