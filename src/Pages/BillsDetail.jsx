@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "sonner";
 
 const BillsDetail = () => {
   const { id } = useParams();
@@ -54,7 +55,6 @@ const BillsDetail = () => {
     );
   }
 
-  // Check if the due date has passed
   const dueDate = new Date(bill["due-date"]);
   const currentDate = new Date();
   const isDueDatePassed = currentDate > dueDate;
@@ -68,7 +68,11 @@ const BillsDetail = () => {
       setUserBalance(updatedBalance);
       localStorage.setItem(`bill_${id}_paid`, "true");
       localStorage.setItem("userBalance", updatedBalance.toString());
+      toast.success(`${bill.bill_type} bill paid successfully`)
     }, 1000);
+    setTimeout(() => {
+      navigate('/bills')
+    }, 4000);
   };
 
   return (

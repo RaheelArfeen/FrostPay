@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "bill_type": "electricity",
+    "bill_type": "Electricity",
     "icon": "https://img.icons8.com/fluency/96/electricity.png",
     "organization": "DESCO",
     "amount": 2080,
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "bill_type": "gas",
+    "bill_type": "Gas",
     "icon": "https://img.icons8.com/fluency/96/gas-industry.png",
     "organization": "Titas Gas",
     "amount": 1640,
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "bill_type": "water",
+    "bill_type": "Water",
     "icon": "https://img.icons8.com/fluency/96/water.png",
     "organization": "WASA",
     "amount": 1040,
@@ -25,7 +25,7 @@
   },
   {
     "id": 4,
-    "bill_type": "internet",
+    "bill_type": "Internet",
     "icon": "https://img.icons8.com/fluency/96/internet.png",
     "organization": "Link3",
     "amount": 2760,
@@ -33,7 +33,7 @@
   },
   {
     "id": 5,
-    "bill_type": "credit card",
+    "bill_type": "Credit card",
     "icon": "https://img.icons8.com/fluency/96/bank-cards.png",
     "organization": "City Bank",
     "amount": 4120,
@@ -41,7 +41,7 @@
   },
   {
     "id": 6,
-    "bill_type": "tuition",
+    "bill_type": "Tuition",
     "icon": "https://img.icons8.com/fluency/96/graduation-cap.png",
     "organization": "North South University",
     "amount": 16500,
@@ -49,7 +49,7 @@
   },
   {
     "id": 7,
-    "bill_type": "electricity",
+    "bill_type": "Electricity",
     "icon": "https://img.icons8.com/fluency/96/electricity.png",
     "organization": "NESCO",
     "amount": 1800,
@@ -57,7 +57,7 @@
   },
   {
     "id": 8,
-    "bill_type": "water",
+    "bill_type": "Water",
     "icon": "https://img.icons8.com/fluency/96/water.png",
     "organization": "DWASA",
     "amount": 860,
@@ -65,7 +65,7 @@
   },
   {
     "id": 9,
-    "bill_type": "phone",
+    "bill_type": "Phone",
     "icon": "https://img.icons8.com/fluency/96/phone.png",
     "organization": "Grameenphone",
     "amount": 930,
@@ -73,7 +73,7 @@
   },
   {
     "id": 10,
-    "bill_type": "insurance",
+    "bill_type": "Insurance",
     "icon": "https://img.icons8.com/?size=100&id=CccIeNvx2axi&format=png&color=228BE6",
     "organization": "MetLife Insurance",
     "amount": 2530,
@@ -81,7 +81,7 @@
   },
   {
     "id": 11,
-    "bill_type": "rent",
+    "bill_type": "Rent",
     "icon": "https://img.icons8.com/fluency/96/cottage.png",
     "organization": "Gulshan Properties",
     "amount": 27600,
@@ -89,7 +89,7 @@
   },
   {
     "id": 12,
-    "bill_type": "streaming",
+    "bill_type": "Streaming",
     "icon": "https://img.icons8.com/fluency/96/video-playlist.png",
     "organization": "Netflix",
     "amount": 1320,
@@ -97,7 +97,7 @@
   },
   {
     "id": 13,
-    "bill_type": "electricity",
+    "bill_type": "Electricity",
     "icon": "https://img.icons8.com/fluency/96/electricity.png",
     "organization": "REB",
     "amount": 1920,
@@ -105,7 +105,7 @@
   },
   {
     "id": 14,
-    "bill_type": "gas",
+    "bill_type": "Gas",
     "icon": "https://img.icons8.com/fluency/96/gas-industry.png",
     "organization": "Bakhrabad Gas",
     "amount": 1780,
@@ -113,7 +113,7 @@
   },
   {
     "id": 15,
-    "bill_type": "internet",
+    "bill_type": "Internet",
     "icon": "https://img.icons8.com/fluency/96/internet.png",
     "organization": "Carnival Internet",
     "amount": 2450,
@@ -121,7 +121,7 @@
   },
   {
     "id": 16,
-    "bill_type": "credit card",
+    "bill_type": "Credit card",
     "icon": "https://img.icons8.com/fluency/96/bank-cards.png",
     "organization": "Standard Chartered",
     "amount": 3870,
@@ -129,7 +129,7 @@
   },
   {
     "id": 17,
-    "bill_type": "water",
+    "bill_type": "Water",
     "icon": "https://img.icons8.com/fluency/96/water.png",
     "organization": "Chattogram WASA",
     "amount": 980,
@@ -137,7 +137,7 @@
   },
   {
     "id": 18,
-    "bill_type": "mobile recharge",
+    "bill_type": "Mobile recharge",
     "icon": "https://img.icons8.com/fluency/96/iphone-x.png",
     "organization": "Banglalink",
     "amount": 510,
@@ -145,7 +145,7 @@
   },
   {
     "id": 19,
-    "bill_type": "insurance",
+    "bill_type": "Insurance",
     "icon": "https://img.icons8.com/?size=100&id=CccIeNvx2axi&format=png&color=228BE6",
     "organization": "Pragati Insurance",
     "amount": 2150,
@@ -153,7 +153,7 @@
   },
   {
     "id": 20,
-    "bill_type": "school fee",
+    "bill_type": "School fee",
     "icon": "https://img.icons8.com/fluency/96/school.png",
     "organization": "Scholars School & College",
     "amount": 7200,
@@ -161,7 +161,7 @@
   },
   {
     "id": 21,
-    "bill_type": "cable tv",
+    "bill_type": "Cable tv",
     "icon": "https://img.icons8.com/fluency/96/tv.png",
     "organization": "ABC Cable Network",
     "amount": 720,
@@ -169,7 +169,7 @@
   },
   {
     "id": 22,
-    "bill_type": "internet",
+    "bill_type": "Internet",
     "icon": "https://img.icons8.com/fluency/96/internet.png",
     "organization": "Amber IT",
     "amount": 2100,
@@ -177,7 +177,7 @@
   },
   {
     "id": 23,
-    "bill_type": "electricity",
+    "bill_type": "Electricity",
     "icon": "https://img.icons8.com/fluency/96/electricity.png",
     "organization": "BPDB",
     "amount": 2030,
@@ -185,7 +185,7 @@
   },
   {
     "id": 24,
-    "bill_type": "credit card",
+    "bill_type": "Credit card",
     "icon": "https://img.icons8.com/fluency/96/bank-cards.png",
     "organization": "Eastern Bank Limited",
     "amount": 3250,
