@@ -4,6 +4,8 @@ import Partners from '../Components/HomeComponent/Partners';
 import Features from '../Components/HomeComponent/Features';
 import UserFeedback from '../Components/HomeComponent/UserFeedback';
 import BottomPart from '../Components/HomeComponent/BottomPart';
+import Blogs from '../Components/HomeComponent/Blogs';
+import FAQSection from '../Components/HomeComponent/FAQSection';
 
 const HomePage = () => {
 
@@ -16,7 +18,9 @@ const HomePage = () => {
             <Banner></Banner>
             <Partners></Partners>
             <Features></Features>
+            <Blogs></Blogs>
             <UserFeedback></UserFeedback>
+            <FAQSection></FAQSection>
             <BottomPart></BottomPart>
         </div>
     );
