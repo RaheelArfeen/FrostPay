@@ -1,12 +1,50 @@
-# React + Vite
+# Forst Pay
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Forst Pay**, a modern and user-friendly web application designed to make utility bill payments quick, simple, and secure — all wrapped in a cool winter-themed interface. This project is part of **Assignment-09** and showcases frontend and backend integration using React and Firebase.
 
-Currently, two official plugins are available:
+## Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visit the live version here: [https://frostpay.netlify.app/](https://frostpay.netlify.app/)
 
-## Expanding the ESLint configuration
+## Purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The purpose of Forst Pay is to simulate a real-world online bill payment system. Users can log in, view their pending bills (such as electricity, gas, water, or internet), and pay directly from their available balance. It demonstrates full-stack development skills including authentication, state management, UI design, and data handling using Firebase Firestore.
+
+## Key Features
+
+- **User Authentication** using Firebase (sign up, log in, and protected routes)
+- **View Bills**: Users can view a list of utility bills with details like amount, due date, and status.
+- **Pay Bills**: Users can pay any unpaid bill using their balance.
+- **Balance Management**: Users can track how much balance is available before and after payments.
+- **Winter-Themed UI**: Clean, frosty design with cool colors and interactive hover effects.
+- **Responsive Design**: Fully responsive layout suitable for mobile, tablet, and desktop.
+- **Client-side Routing** with protected and public routes.
+- **Smooth UI Interactions** using animations and stylish components.
+
+## Technologies & NPM Packages Used
+
+- **React** – The JavaScript library for building the user interface.
+- **TailwindCSS** – A utility-first CSS framework for rapid UI development.
+- **DaisyUI** – Beautiful UI components built on TailwindCSS.
+- **Firebase** – Backend-as-a-service used for authentication and Firestore database.
+- **React Router** – For managing routes and navigation.
+- **Lucide-React** – A beautiful icon library used for elegant iconography.
+- **Sonner** – A toast notification library for feedback and alerts.
+- **Swiper.js** – For responsive and touch-friendly carousels or sliders.
+
+## Future Improvements
+
+- Add payment history tracking for users.
+- Integrate real-time database updates.
+- Enhance animations for more immersive winter effects.
+- Support for dark mode.
+
+## Contributing
+
+This is an assignment-based personal project and not open for contributions at the moment, but feedback and suggestions are always welcome!
+
+## License
+
+This project is for educational purposes and is not licensed for commercial use.
+
+Thanks for checking out **Forst Pay**! ❄️💡
