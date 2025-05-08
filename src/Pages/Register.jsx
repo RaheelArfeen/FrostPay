@@ -102,7 +102,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
         toast.error('Google sign-in failed');
         setGoogleLoading(false);
     });
-
       
   };
 
@@ -115,7 +114,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Full Name */}
           <div className="mb-4">
             <label className="block text-gray-800 font-medium mb-1">Full Name</label>
             <input
@@ -129,7 +127,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
             {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
           </div>
 
-          {/* Email */}
           <div className="mb-4">
             <label className="block text-gray-800 font-medium mb-1">Email</label>
             <input
@@ -143,7 +140,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
 
-          {/* Profile Photo */}
           <div className="mb-4">
             <label className="block text-gray-800 font-medium mb-1">Profile Photo URL (optional)</label>
             <input
@@ -156,7 +152,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
             {errors.profilePhoto && <p className="text-red-500 text-sm mt-1">{errors.profilePhoto}</p>}
           </div>
 
-          {/* Password */}
           <div className="mb-6">
             <label className="block text-gray-800 font-medium mb-2">Password</label>
             <div className="relative">
@@ -207,20 +202,17 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
             <p className="text-red-500 text-sm mb-4">{errors.firebase}</p>
           )}
 
-          {/* Submit Button */}
               <button type="submit" className="w-full py-3 bg-[#3A63D8] text-white font-semibold rounded-lg hover:bg-[#2A48B5] transition disabled:opacity-60" disabled={loading || isLoading}>
                   {loading || isLoading ? 'Creating...' : 'Create Account'}
               </button>
         </form>
 
-        {/* Divider */}
         <div className="my-6 relative flex items-center">
           <div className="flex-grow border-t border-gray-300"></div>
           <span className="flex-shrink mx-4 text-gray-600">Or continue with</span>
           <div className="flex-grow border-t border-gray-300"></div>
         </div>
 
-        {/* Google Button */}
         <button
           onClick={handleGoogleLogin}
           className="w-full py-3 border border-gray-300 rounded-lg flex items-center justify-center gap-3 hover:bg-gray-100 transition disabled:opacity-60"
@@ -241,7 +233,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
           )}
         </button>
 
-        {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-gray-600">
             Already have an account?{' '}

@@ -21,7 +21,6 @@ const AboutUsSection = () => {
             </div>
           </div>
           
-          {/* Right column with content */}
           <div className="lg:w-1/2">
             <h2 className="text-3xl font-bold mb-6">About FrostPay</h2>
             <p className="text-lg text-gray-700 mb-6">

@@ -74,6 +74,7 @@ const Profile = () => {
               )}
             </div>
             <h2 className="text-2xl font-semibold mt-4">{user.displayName || 'User'}</h2>
+            <p className='text-sm'>{user.email || 'example@gmail.com'}</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               <div className="bg-blue-50 p-4 rounded-lg shadow-sm hover:shadow-md transition">
