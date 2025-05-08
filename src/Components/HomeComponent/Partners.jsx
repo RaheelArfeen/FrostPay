@@ -9,6 +9,7 @@ const Partners = () => {
         fetch('/bills.json')
             .then(res => res.json())
             .then(data => setPartners(data))
+            .catch(err => console.error('Failed to load partners:', err));
     }, []);
 
     useEffect(() => {

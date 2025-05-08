@@ -100,7 +100,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
     .catch((error) => {
         console.error('Google sign-in error:', error);
         toast.error('Google sign-in failed');
-        setGoogleLoading(false); // Now inside a function
+        setGoogleLoading(false);
     });
 
       

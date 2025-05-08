@@ -7,6 +7,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
+import { toast } from 'sonner';
 
 const Login = ({ onRegister }) => {
   const [email, setEmail] = useState('');
@@ -47,9 +48,10 @@ const Login = ({ onRegister }) => {
     signInWithPopup(auth, provider)
       .then(() => {
         navigate(from, { replace: true });
+        toast.success('Successfully logged in with Google')
       })
       .catch(() => {
-        setErrors({ general: 'Google sign-in failed. Please try again.' });
+        toast.error('Google sign-in failed. Please try again.')
       });
   };
 
@@ -64,6 +66,7 @@ const Login = ({ onRegister }) => {
 
       setTimeout(() => {
         navigate(from, { replace: true });
+        toast.success('Successfully logged in.')
         setLoading(false);
       }, 300);
     } catch (error) {
