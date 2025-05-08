@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'sonner';
 
 const Navbar = () => {
-  const { logOut, userBalance, loading } = useContext(AuthContext); // Access userBalance and loading from AuthContext
+  const { logOut, userBalance, loading } = useContext(AuthContext)
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -136,7 +136,6 @@ const Navbar = () => {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">{user.displayName || 'User'}</div>
-                      <div className="text-sm font-medium text-gray-500">{user.email}</div>
                     </div>
                   </div>
                   <div className="px-3 py-2 text-sm text-[#374151]">Balance: ৳{userBalance ? userBalance.toLocaleString() : '0'}</div>

@@ -116,6 +116,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
           <div className="mb-4">
             <label className="block text-gray-800 font-medium mb-1">Full Name</label>
             <input
+              type='text'
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="John Doe"
@@ -143,6 +144,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
           <div className="mb-4">
             <label className="block text-gray-800 font-medium mb-1">Profile Photo URL (optional)</label>
             <input
+              type='url'
               value={profilePhoto}
               onChange={(e) => setProfilePhoto(e.target.value)}
               placeholder="https://example.com/photo.jpg"

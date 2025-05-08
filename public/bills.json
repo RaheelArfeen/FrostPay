@@ -94,5 +94,101 @@
     "organization": "Netflix",
     "amount": 1320,
     "due-date": "2025-04-25T06:57:58.110Z"
+  },
+  {
+    "id": 13,
+    "bill_type": "electricity",
+    "icon": "https://img.icons8.com/fluency/96/electricity.png",
+    "organization": "REB",
+    "amount": 1920,
+    "due-date": "2025-04-22T06:57:58.110Z"
+  },
+  {
+    "id": 14,
+    "bill_type": "gas",
+    "icon": "https://img.icons8.com/fluency/96/gas-industry.png",
+    "organization": "Bakhrabad Gas",
+    "amount": 1780,
+    "due-date": "2025-04-28T06:57:58.110Z"
+  },
+  {
+    "id": 15,
+    "bill_type": "internet",
+    "icon": "https://img.icons8.com/fluency/96/internet.png",
+    "organization": "Carnival Internet",
+    "amount": 2450,
+    "due-date": "2025-05-01T06:57:58.110Z"
+  },
+  {
+    "id": 16,
+    "bill_type": "credit card",
+    "icon": "https://img.icons8.com/fluency/96/bank-cards.png",
+    "organization": "Standard Chartered",
+    "amount": 3870,
+    "due-date": "2025-05-05T06:57:58.110Z"
+  },
+  {
+    "id": 17,
+    "bill_type": "water",
+    "icon": "https://img.icons8.com/fluency/96/water.png",
+    "organization": "Chattogram WASA",
+    "amount": 980,
+    "due-date": "2025-04-27T06:57:58.110Z"
+  },
+  {
+    "id": 18,
+    "bill_type": "mobile recharge",
+    "icon": "https://img.icons8.com/fluency/96/iphone-x.png",
+    "organization": "Banglalink",
+    "amount": 510,
+    "due-date": "2025-05-08T06:57:58.110Z"
+  },
+  {
+    "id": 19,
+    "bill_type": "insurance",
+    "icon": "https://img.icons8.com/?size=100&id=CccIeNvx2axi&format=png&color=228BE6",
+    "organization": "Pragati Insurance",
+    "amount": 2150,
+    "due-date": "2025-05-10T06:57:58.110Z"
+  },
+  {
+    "id": 20,
+    "bill_type": "school fee",
+    "icon": "https://img.icons8.com/fluency/96/school.png",
+    "organization": "Scholars School & College",
+    "amount": 7200,
+    "due-date": "2025-05-03T06:57:58.110Z"
+  },
+  {
+    "id": 21,
+    "bill_type": "cable tv",
+    "icon": "https://img.icons8.com/fluency/96/tv.png",
+    "organization": "ABC Cable Network",
+    "amount": 720,
+    "due-date": "2025-05-06T06:57:58.110Z"
+  },
+  {
+    "id": 22,
+    "bill_type": "internet",
+    "icon": "https://img.icons8.com/fluency/96/internet.png",
+    "organization": "Amber IT",
+    "amount": 2100,
+    "due-date": "2025-05-09T06:57:58.110Z"
+  },
+  {
+    "id": 23,
+    "bill_type": "electricity",
+    "icon": "https://img.icons8.com/fluency/96/electricity.png",
+    "organization": "BPDB",
+    "amount": 2030,
+    "due-date": "2025-05-11T06:57:58.110Z"
+  },
+  {
+    "id": 24,
+    "bill_type": "credit card",
+    "icon": "https://img.icons8.com/fluency/96/bank-cards.png",
+    "organization": "Eastern Bank Limited",
+    "amount": 3250,
+    "due-date": "2025-05-12T06:57:58.110Z"
   }
 ]

@@ -22,7 +22,10 @@ const getInitialBalance = () => {
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userBalance, setUserBalance] = useState(getInitialBalance);
+
+  // Define initial balance in a variable
+  const initialBalance = getInitialBalance();
+  const [userBalance, setUserBalance] = useState(initialBalance);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -55,6 +58,17 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+
+    // Reset balance
+    setUserBalance(10000);
+
+    // Clear all bill payment statuses from localStorage
+    Object.keys(localStorage).forEach((key) => {
+      if (key.startsWith("bill_") && key.endsWith("_paid")) {
+        localStorage.removeItem(key);
+      }
+    });
+
     return signOut(auth);
   };
 

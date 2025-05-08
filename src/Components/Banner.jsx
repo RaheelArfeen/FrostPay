@@ -46,9 +46,12 @@ const Banner = () => {
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
-        spaceBetween={10}
+        pagination={{
+          clickable: true,
+        }}
         loop={true}
         speed={800}
+        spaceBetween={10}
         className="w-full h-[500px]"
       >
         {slides.map((slide, index) => (
@@ -80,18 +83,20 @@ const Banner = () => {
         ))}
 
         <button
-          className='absolute top-1/2 left-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition bg-white text-black cursor-pointer'
+          className="custom-prev hidden md:flex absolute top-1/2 left-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full items-center justify-center bg-white text-black cursor-pointer"
           onClick={() => swiperRef.current?.slidePrev()}
         >
           &#8592;
         </button>
 
         <button
-          className='absolute top-1/2 right-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition bg-white text-black cursor-pointer '
+          className="custom-next hidden md:flex absolute top-1/2 right-4 z-30 transform -translate-y-1/2 w-9 h-9 rounded-full items-center justify-center bg-white text-black cursor-pointer"
           onClick={() => swiperRef.current?.slideNext()}
         >
           &#8594;
         </button>
+
+        <div className="swiper-pagination flex md:hidden justify-center mt-4 !static"></div>
       </Swiper>
     </div>
   );
