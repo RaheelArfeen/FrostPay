@@ -34,10 +34,8 @@ The purpose of Forst Pay is to simulate a real-world online bill payment system.
 
 ## Future Improvements
 
-- Add payment history tracking for users.
 - Integrate real-time database updates.
 - Enhance animations for more immersive winter effects.
-- Support for dark mode.
 
 ## Contributing
 
