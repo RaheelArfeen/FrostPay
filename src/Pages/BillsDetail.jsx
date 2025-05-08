@@ -72,7 +72,7 @@ const BillsDetail = () => {
     }, 1000);
     setTimeout(() => {
       navigate('/bills')
-    }, 4000);
+    }, 3000);
   };
 
   return (
