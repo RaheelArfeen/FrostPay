@@ -59,10 +59,7 @@ const AddBalance = () => {
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 
-                             focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                             text-gray-800 text-lg transition-all duration-200
-                             placeholder:text-gray-400"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-gray-800 text-lg transition-all duration-200 placeholder:text-gray-400"
                     placeholder="e.g. 500"
                     step="any"
                   />

@@ -54,6 +54,11 @@ const BillsDetail = () => {
     );
   }
 
+  // Check if the due date has passed
+  const dueDate = new Date(bill["due-date"]);
+  const currentDate = new Date();
+  const isDueDatePassed = currentDate > dueDate;
+
   const handlePayBill = () => {
     setIsProcessing(true);
     setTimeout(() => {
@@ -69,7 +74,12 @@ const BillsDetail = () => {
   return (
     <div className="md:container w-full mx-auto px-4 flex justify-center items-center">
       <div className="max-w-3xl w-full bg-white p-6 rounded-lg my-32 shadow-lg">
-        <div className="pt-6">
+        <div className="pt-6 relative">
+          {!isPaid && isDueDatePassed && (
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-sm px-2 py-1 rounded-full">
+              Due Date Passed
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col items-center justify-center relative">
               <img src={bill.icon} alt={bill.organization} className="w-36 h-36 mb-4" />
@@ -125,7 +135,7 @@ const BillsDetail = () => {
         <div className="flex justify-between mt-4">
           <button
             onClick={() => navigate("/bills")}
-            className="border border-gray-300 px-4 py-2 rounded hover:bg-gray-200"
+            className="border border-gray-300 px-4 py-2 rounded hover:bg-gray-200 cursor-pointer transition"
           >
             Back to Bills
           </button>

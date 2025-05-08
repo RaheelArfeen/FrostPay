@@ -83,9 +83,6 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
     const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({
-        prompt: 'select_account'
-    });
 
     signInWithPopup(auth, provider)
     .then((result) => {
@@ -95,6 +92,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
         setTimeout(() => {
         setGoogleLoading(false);
         navigate(from, { replace: true });;
+        console.log(result.user);
         }, 500);
     })
     .catch((error) => {
