@@ -239,7 +239,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
               onClick={onLogin}
               className="text-[#3A63D8] hover:text-indigo-800 font-medium transition"
             >
-              Sign In
+              Log In
             </Link>
           </p>
         </div>
