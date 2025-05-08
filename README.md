@@ -47,4 +47,4 @@ This is an assignment-based personal project and not open for contributions at t
 
 This project is for educational purposes and is not licensed for commercial use.
 
-Thanks for checking out **Forst Pay**! ❄️💡
+Thanks for checking out **Forst Pay**!
