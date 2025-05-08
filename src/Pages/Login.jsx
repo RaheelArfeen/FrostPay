@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link, useNavigate } from 'react-router';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { Link, useNavigate, useLocation } from 'react-router';
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
 
 const Login = ({ onRegister }) => {
@@ -10,11 +14,14 @@ const Login = ({ onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
@@ -35,13 +42,11 @@ const Login = ({ onRegister }) => {
 
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({
-      prompt: 'select_account'
-    });
+    provider.setCustomParameters({ prompt: 'select_account' });
 
     signInWithPopup(auth, provider)
       .then(() => {
-        navigate('/');
+        navigate(from, { replace: true });
       })
       .catch(() => {
         setErrors({ general: 'Google sign-in failed. Please try again.' });
@@ -58,7 +63,7 @@ const Login = ({ onRegister }) => {
       await signInWithEmailAndPassword(auth, email, password);
 
       setTimeout(() => {
-        navigate('/');
+        navigate(from, { replace: true });
         setLoading(false);
       }, 300);
     } catch (error) {

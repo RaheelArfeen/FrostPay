@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Eye, EyeOff, Check, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -11,7 +11,6 @@ import { auth } from '../Firebase/Firebase.init';
 import { toast } from 'sonner';
 
 const RegisterForm = ({ onLogin, isLoading = false }) => {
-  const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('');
@@ -20,6 +19,10 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const hasUppercase = /[A-Z]/.test(password);
   const hasLowercase = /[a-z]/.test(password);
@@ -69,7 +72,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
       setTimeout(() => {
         setLoading(false);
         toast.success('Account created successfully!')
-        navigate('/')
+        navigate(from, { replace: true });
       }, 500);
     } catch (error) {
       setErrors((prev) => ({ ...prev, firebase: error.message }));
@@ -91,7 +94,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
         toast.success('Google login successful!');
         setTimeout(() => {
         setGoogleLoading(false);
-        navigate('/');
+        navigate(from, { replace: true });;
         }, 500);
     })
     .catch((error) => {
