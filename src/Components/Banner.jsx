@@ -63,7 +63,7 @@ const Banner = () => {
                 style={{ backgroundImage: `url(${slide.image})` }}
               ></div>
               <div className="relative z-20 h-full flex items-center">
-                <div className="container mx-auto px-4">
+                <div className="md:w-[1400px] mx-auto px-4">
                   <div className="max-w-lg animate-fade-in">
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                       {slide.title}
@@ -71,7 +71,7 @@ const Banner = () => {
                     <p className="text-lg text-white/90 mb-8">{slide.description}</p>
                     <Link
                       to={currentUser ? '/bills' : '/register'}
-                      className="inline-block px-6 py-3 bg-[#3A63D8] text-white rounded-md hover:bg-[#2A48B5] transition duration-400 hover:scale-105"
+                      className="inline-block px-8 py-3 bg-[#3A63D8] text-white rounded-md hover:bg-[#2A48B5] transition duration-400 hover:scale-105 text-sm"
                     >
                       {currentUser ? 'Pay Bills Now' : 'Get Started'}
                     </Link>

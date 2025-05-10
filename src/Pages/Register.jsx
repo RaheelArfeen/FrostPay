@@ -105,7 +105,7 @@ const RegisterForm = ({ onLogin, isLoading = false }) => {
 
   return (
     <div className='px-3'>
-      <div className="w-full max-w-md my-12 mx-auto p-6 bg-white rounded-xl shadow-sm">
+      <div className="w-full max-w-md my-24 mx-auto p-6 bg-white rounded-xl shadow-sm">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
           <p className="text-gray-600">Register with FrostPay to start managing your bills</p>

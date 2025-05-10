@@ -11,11 +11,11 @@ const Features = () => {
   return (
     <div>
       <section
-        className={`py-16 bg-[#F1F0FB] transition-opacity duration-700 ${
+        className={`py-16 transition-opacity duration-700 bg-white ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="container mx-auto px-4">
+        <div className="md:w-[1400px] mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
             Why Choose FrostPay?
           </h2>

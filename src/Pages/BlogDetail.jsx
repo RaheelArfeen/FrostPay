@@ -179,7 +179,7 @@ const BlogDetails = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-16 flex justify-center">
+      <div className="w-[1400px] mx-auto px-4 py-16 flex justify-center">
         <div className="animate-pulse flex flex-col w-full max-w-3xl">
         </div>
       </div>
@@ -188,7 +188,7 @@ const BlogDetails = () => {
 
   if (!post) {
     return (
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center">
+      <div className="w-[1400px] mx-auto px-4 py-16 flex flex-col items-center">
         <h1 className="text-3xl font-bold mb-6">Blog Post Not Found</h1>
         <button
           onClick={goBack}
@@ -209,7 +209,7 @@ const BlogDetails = () => {
           alt={post.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute bottom-0 md:container left-1/2 -translate-x-1/2 w-full py-6 md:py-12 px-4 z-20">
+        <div className="absolute bottom-0 md:w-[1400px] left-1/2 -translate-x-1/2 w-full py-6 md:py-12 px-4 z-20">
           <button
             onClick={goBack}
             className="bg-gray-600 text-white py-2 px-4 rounded-md mb-4"
@@ -225,7 +225,7 @@ const BlogDetails = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="w-[1400px] mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-8">
             <div className="bg-white rounded-lg overflow-hidden">

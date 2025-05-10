@@ -16,10 +16,10 @@ const Bills = () => {
   useEffect(() => {
     setFilteredBills(bills);
   }, [bills]);
-  
+
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (selectedType === "all") {
@@ -48,7 +48,7 @@ const Bills = () => {
   };
 
   return (
-    <div className={`md:container w-full mx-auto px-4 min-h-[600px] my-8`}>
+    <div className="md:w-[1400px] w-full mx-auto px-4 min-h-[600px] my-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Utility Bills</h1>
 
       <div className="mb-6 max-w-xs mx-auto relative">
@@ -61,22 +61,30 @@ const Bills = () => {
         >
           {selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}
           <ChevronDown
-            className={`transition duration-400 ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
+            className={`transition duration-400 ${
+              isDropdownOpen ? "rotate-180" : "rotate-0"
+            }`}
             strokeWidth={1}
           />
         </div>
 
         {dropdownVisible && (
           <div
-            className={`absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-md p-1.5 transform origin-top transition-all duration-300
-            ${isDropdownOpen ? "scale-y-100 opacity-100" : "scale-y-95 opacity-0 pointer-events-none"}`}
+            className={`absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-md p-1.5 transform origin-top transition-all duration-300 ${
+              isDropdownOpen
+                ? "scale-y-100 opacity-100"
+                : "scale-y-95 opacity-0 pointer-events-none"
+            }`}
           >
             {billTypes.map((type) => (
               <div
                 key={type}
                 onClick={() => handleSelect(type)}
-                className={`px-4 py-2 cursor-pointer rounded-md mb-1 flex items-center
-                  ${selectedType === type ? "bg-gray-200 font-semibold" : "hover:bg-gray-50"}`}
+                className={`px-4 py-2 cursor-pointer rounded-md mb-1 flex items-center ${
+                  selectedType === type
+                    ? "bg-gray-200 font-semibold"
+                    : "hover:bg-gray-50"
+                }`}
               >
                 {selectedType === type && (
                   <Check className="w-4 h-4 mr-2 text-green-600" />
@@ -90,63 +98,78 @@ const Bills = () => {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredBills.length > 0 ? (
-          filteredBills.map((bill) => (
-            <div
-              key={bill.id}
-              className="border border-gray-300 rounded-xl shadow p-6 flex flex-col justify-between relative bg-white hover:scale-102 hover:shadow-xl transition duration-500"
-            >
-              {paidBills.includes(bill.id) && (
-                <div className="absolute top-3 right-3 bg-green-500 text-white rounded-full p-1">
-                  <Check className="h-5 w-5" />
-                </div>
-              )}
+          filteredBills.map((bill) => {
+            // Read updated paid status from localStorage
+            const storedBill = localStorage.getItem(`bill_${bill.id}`);
+            let isPaid = false;
 
-              <div className="flex items-center mb-4">
-                <img
-                  src={bill.icon}
-                  alt={bill.bill_type}
-                  className="w-12 h-12 mr-4"
-                />
-                <div>
-                  <h3 className="font-semibold">{bill.organization}</h3>
-                  <p className="text-sm text-gray-600 capitalize">
-                    {bill.bill_type}
-                  </p>
+            if (storedBill) {
+              try {
+                const parsed = JSON.parse(storedBill);
+                isPaid = parsed.paid === true;
+              } catch (e) {
+                console.error("Error parsing bill data:", e);
+              }
+            }
+
+            return (
+              <div
+                key={bill.id}
+                className="border border-gray-300 rounded-xl shadow p-6 flex flex-col justify-between relative bg-white hover:scale-102 hover:shadow-xl transition duration-500"
+              >
+                {isPaid && (
+                  <div className="absolute top-3 right-3 bg-green-500 text-white rounded-full p-1">
+                    <Check className="h-5 w-5" />
+                  </div>
+                )}
+
+                <div className="flex items-center mb-4">
+                  <img
+                    src={bill.icon}
+                    alt={bill.bill_type}
+                    className="w-12 h-12 mr-4"
+                  />
+                  <div>
+                    <h3 className="font-semibold">{bill.organization}</h3>
+                    <p className="text-sm text-gray-600 capitalize">
+                      {bill.bill_type}
+                    </p>
+                  </div>
                 </div>
+
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Amount:</span>
+                    <span className="font-medium">
+                      ৳{bill.amount.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Due Date:</span>
+                    <span className="font-medium">
+                      {new Date(bill["due-date"]).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+
+                {isPaid ? (
+                  <button
+                    className="w-full bg-green-500 text-white py-2 rounded cursor-not-allowed"
+                    disabled
+                  >
+                    Paid
+                  </button>
+                ) : (
+                  <Link
+                    to={`/bills/${bill.id}`}
+                    className="block text-center bg-[#3A63D8] hover:bg-[#2A48B5] transition text-white py-2 rounded"
+                  >
+                    Pay
+                  </Link>
+                )}
               </div>
-
-              <div className="space-y-2 mb-4">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Amount:</span>
-                  <span className="font-medium">
-                    ৳{bill.amount.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Due Date:</span>
-                  <span className="font-medium">
-                    {new Date(bill["due-date"]).toLocaleDateString()}
-                  </span>
-                </div>
-              </div>
-
-              {paidBills.includes(bill.id) ? (
-                <button
-                  className="w-full bg-green-500 text-white py-2 rounded cursor-not-allowed"
-                  disabled
-                >
-                  Paid
-                </button>
-              ) : (
-                <Link
-                  to={`/bills/${bill.id}`}
-                  className="block text-center bg-[#3A63D8] hover:bg-[#3A63D8] transition text-white py-2 rounded"
-                >
-                  Pay
-                </Link>
-              )}
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="col-span-full text-center py-10">
             <p>No bills found for this type.</p>

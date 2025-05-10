@@ -35,8 +35,8 @@ const Companies = () => {
   ];
 
   return (
-    <section className="py-16 bg-[#F1F0FB]">
-      <div className="container mx-auto px-4">
+    <section className="py-16">
+      <div className="md:w-[1400px] mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">
           Companies That Trust Us
         </h2>

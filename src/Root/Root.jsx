@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import { Outlet } from 'react-router';
 import Footer from '../Components/Footer';
 import TitleManager from '../TitleManager/TitleManager';
+import { ScrollToTop } from '../Components/ScrollToTop';
 
 const Root = () => {
     return (
@@ -13,6 +14,7 @@ const Root = () => {
             <div className='bg-[#1A1F2C]'>
                 <Footer></Footer>
             </div>
+            <ScrollToTop></ScrollToTop>
         </div>
     );
 };

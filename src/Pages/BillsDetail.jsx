@@ -32,9 +32,12 @@ const BillsDetail = () => {
   }, []);
 
   useEffect(() => {
-    const storedPaymentStatus = localStorage.getItem(`bill_${id}_paid`);
-    if (storedPaymentStatus === "true") {
-      setIsPaid(true);
+    const storedBill = localStorage.getItem(`bill_${id}`);
+    if (storedBill) {
+      const parsed = JSON.parse(storedBill);
+      if (parsed.paid) {
+        setIsPaid(true);
+      }
     }
   }, [id]);
 
@@ -48,7 +51,7 @@ const BillsDetail = () => {
 
   if (!bill) {
     return (
-      <div className="md:container mx-auto px-4 min-h-[600px] my-8">
+      <div className="md:w-[1400px] mx-auto px-4 min-h-[600px] my-8">
         <h1 className="text-3xl font-bold mb-8 text-center">Bill Not Found</h1>
         <p className="text-center text-gray-600">The requested bill could not be found.</p>
       </div>
@@ -66,17 +69,28 @@ const BillsDetail = () => {
       setIsProcessing(false);
       const updatedBalance = userBalance - bill.amount;
       setUserBalance(updatedBalance);
-      localStorage.setItem(`bill_${id}_paid`, "true");
+
+      // Save full bill object with payment info
+      const billToStore = {
+        ...bill,
+        paid: true,
+        paidAt: new Date().toISOString(),
+      };
+      localStorage.setItem(`bill_${id}`, JSON.stringify(billToStore));
+
+      // Update stored balance
       localStorage.setItem("userBalance", updatedBalance.toString());
-      toast.success(`${bill.bill_type} bill paid successfully`)
+
+      toast.success(`${bill.bill_type} bill paid successfully`);
     }, 1000);
+
     setTimeout(() => {
-      navigate('/bills')
+      navigate("/bills");
     }, 3000);
   };
 
   return (
-    <div className="md:container w-full mx-auto px-4 flex justify-center items-center">
+    <div className="md:w-[1400px] w-full mx-auto px-4 flex justify-center items-center">
       <div className="max-w-3xl w-full bg-white p-6 rounded-lg my-32 shadow-lg">
         <div className="pt-6 relative">
           {!isPaid && isDueDatePassed && (

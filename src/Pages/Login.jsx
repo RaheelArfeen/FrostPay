@@ -84,7 +84,7 @@ const Login = ({ onRegister }) => {
 
   return (
     <div className='px-3'>
-      <div className="w-full max-w-md mx-auto my-12 p-6 bg-white rounded-xl shadow-sm">
+      <div className="w-full max-w-md mx-auto my-24 p-6 bg-white rounded-xl shadow-sm">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
           <p className="text-gray-600">Sign in to your FrostPay account</p>
