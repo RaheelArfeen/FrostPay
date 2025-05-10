@@ -48,7 +48,7 @@ const Bills = () => {
   };
 
   return (
-    <div className="md:w-[1400px] w-full mx-auto px-4 min-h-[600px] my-8">
+    <div className="md:max-w-[1400px] w-full mx-auto px-4 min-h-[600px] my-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Utility Bills</h1>
 
       <div className="mb-6 max-w-xs mx-auto relative">

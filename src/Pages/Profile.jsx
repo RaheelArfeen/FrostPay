@@ -62,8 +62,8 @@ const Profile = () => {
   }
 
   return (
-    <div className="md:w-[1400px] mx-auto px-4 py-10 flex flex-col gap-6">
-      <div className="bg-[#5C86E2] rounded-xl text-white p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div className="md:max-w-[1400px] w-full mx-auto px-4 py-10 flex flex-col gap-6">
+      <div className="bg-[#5C86E2] rounded-xl text-white p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white">
             {user.photoURL ? (
@@ -87,7 +87,7 @@ const Profile = () => {
         </div>
         <Link
           to="/update-profile"
-          className="bg-white text-[#3A63D8] px-4 py-2 rounded shadow hover:bg-[#7FA9ED] hover:text-white transition"
+          className="bg-white text-[#3A63D8] px-4 py-2 rounded shadow hover:bg-[#7FA9ED] hover:text-white transition text-center"
         >
           Update Profile
         </Link>
@@ -98,28 +98,28 @@ const Profile = () => {
         <div className="space-y-6 text-sm">
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
             <span className="text-gray-600 text-base">Full Name</span>
-            <span className="text-lg">{user.displayName}</span>
+            <span className="md:text-lg text-base">{user.displayName}</span>
           </div>
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
             <span className="text-gray-600 text-base">Email Address</span>
-            <span className="text-lg">{user.email}</span>
+            <span className="md:text-lg text-base">{user.email}</span>
           </div>
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
             <span className="text-gray-600 text-base">Account Balance</span>
-            <span className="text-green-600 font-semibold text-lg">
-              {userBalance.toLocaleString()} BDT
+            <span className="text-green-600 font-semibold md:text-lg text-base">
+              ৳{userBalance.toLocaleString()}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="bg-[#FFFBEB] shadow-lg rounded-xl py-4">
-        <div className="border-b border-[#e5e7eb] px-6">
+      <div className="bg-[#D3E4FD] shadow-lg rounded-xl py-4 w-full">
+        <div className="border-b border-[#c7d0e2] px-4 sm:px-6">
           <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
         </div>
 
         {paidBills.length === 0 ? (
-          <div className="text-center py-10">
+          <div className="text-center py-10 px-4">
             <div className="bg-gray-100 p-4 rounded-full inline-block mb-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -147,11 +147,11 @@ const Profile = () => {
             </Link>
           </div>
         ) : (
-          <ul className="list-inside space-y-3 text-gray-700 text-sm p-4">
+          <ul className="space-y-4 p-4">
             {paidBills.map((bill) => (
-              <div
+              <li
                 key={bill.id}
-                className="bg-white rounded-xl shadow-sm flex items-center justify-between p-5"
+                className="bg-white rounded-xl shadow-sm flex flex-col md:flex-row md:items-center md:justify-between p-4 gap-4"
               >
                 <div className="flex items-center gap-4">
                   <img
@@ -169,8 +169,8 @@ const Profile = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-8">
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6 text-sm text-gray-600">
                     <p>Bill ID: {bill.id}</p>
                     <p>
                       Paid At:{" "}
@@ -180,15 +180,15 @@ const Profile = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 justify-between">
                     <p className="text-orange-600 font-bold text-lg">
-                      {bill.amount} BDT
+                      ৳{bill.amount}
                     </p>
-                    <button className="bg-green-600 hover:bg-green-700 transition text-white text-sm px-5 py-2 rounded mt-1 flex items-center gap-1">
+                    <button className="bg-green-600 transition text-white text-sm px-4 py-2 rounded flex items-center gap-1">
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 512 512"
                         height="1em"
                         width="1em"
@@ -200,7 +200,7 @@ const Profile = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </li>
             ))}
           </ul>
         )}

@@ -52,12 +52,12 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="w-[1400px] mx-auto px-4">
+      <div className="max-w-[1400px] w-full mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <NavLink to="/" className="text-[#1A1F2C] text-xl font-bold">
+            <Link to="/" className="text-[#1A1F2C] text-xl font-bold">
               Frost<span className="text-[#3A63D8]">Pay</span>
-            </NavLink>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">

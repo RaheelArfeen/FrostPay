@@ -11,7 +11,6 @@ import Profile from "../Pages/Profile";
 import UpdateProfile from "../Pages/UpdateProfile";
 import { ProtectedRoute } from "../Provider/ProtectedRoute";
 import BillsDetail from "../Pages/BillsDetail";
-import AddBalance from "../Pages/AddBalance";
 import BlogDetails from "../Pages/BlogDetail";
   
   const billsLoader = async () => {
@@ -30,7 +29,6 @@ import BlogDetails from "../Pages/BlogDetail";
         { path: '/bills', loader: billsLoader, element: <ProtectedRoute><Bills /></ProtectedRoute> },
         { path: '/profile', element: <ProtectedRoute><Profile /></ProtectedRoute> },
         { path: '/update-profile', element: <ProtectedRoute><UpdateProfile /></ProtectedRoute> },
-        { path: '/add-balance', element: <ProtectedRoute><AddBalance /></ProtectedRoute> },
         { path: '/bills/:id', element: <ProtectedRoute><BillsDetail /></ProtectedRoute>, loader: billsLoader, },
         { path: '/blog/:id', element: <ProtectedRoute><BlogDetails /></ProtectedRoute> },
         { path: '/login', element: <Login /> },

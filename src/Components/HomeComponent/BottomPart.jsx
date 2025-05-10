@@ -7,7 +7,7 @@ const BottomPart = () => {
 
   return (
     <section className="py-16 bg-gradient-to-r from-[#2A48B5] to-[#1A1F2C] relative overflow-hidden">
-      <div className="md:w-[1400px] mx-auto px-4 text-center relative z-10">
+      <div className="md:max-w-[1400px] w-full mx-auto px-4 text-center relative z-10">
         <h2 className="text-3xl font-bold text-white mb-4 animate-fade-in">
           Ready to Simplify Your Bill Payments?
         </h2>

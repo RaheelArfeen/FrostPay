@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const AboutUsSection = () => {
   return (
     <section className="py-16 bg-white">
-      <div className="md:w-[1400px] mx-auto px-4">
+      <div className="md:max-w-[1400px] w-full mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="lg:w-1/2">
             <div className="relative">

@@ -31,7 +31,7 @@ const Blogs = () => {
 
   return (
     <section className="py-16">
-      <div className="md:w-[1400px] mx-auto px-4">
+      <div className="md:max-w-[1400px] w-full mx-auto px-4">
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-4 text-center md:mb-0">Latest from Our Blog</h2>
         </div>

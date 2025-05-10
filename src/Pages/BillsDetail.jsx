@@ -51,7 +51,7 @@ const BillsDetail = () => {
 
   if (!bill) {
     return (
-      <div className="md:w-[1400px] mx-auto px-4 min-h-[600px] my-8">
+      <div className="md:max-w-[1400px] w-full mx-auto px-4 min-h-[600px] my-8">
         <h1 className="text-3xl font-bold mb-8 text-center">Bill Not Found</h1>
         <p className="text-center text-gray-600">The requested bill could not be found.</p>
       </div>
@@ -90,7 +90,7 @@ const BillsDetail = () => {
   };
 
   return (
-    <div className="md:w-[1400px] w-full mx-auto px-4 flex justify-center items-center">
+    <div className="md:max-w-[1400px] w-full w-full mx-auto px-4 flex justify-center items-center">
       <div className="max-w-3xl w-full bg-white p-6 rounded-lg my-32 shadow-lg">
         <div className="pt-6 relative">
           {!isPaid && isDueDatePassed && (
