@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
 import { toast } from 'sonner';
@@ -26,35 +27,46 @@ const Login = ({ onRegister }) => {
 
   const validateForm = () => {
     const newErrors = {};
-
     if (!email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Email is invalid';
     }
-
     if (!password) {
       newErrors.password = 'Password is required';
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-
     signInWithPopup(auth, provider)
-      .then((result) => {
-        toast.success('Successfully logged in with Google')
-        console.log(result.user);
+      .then(() => {
+        toast.success('Successfully logged in with Google');
         navigate(from, { replace: true });
-        
       })
       .catch(() => {
-        toast.error('Google sign-in failed. Please try again.')
+        toast.error('Google sign-in failed. Please try again.');
       });
   };
+
+  const handleResetPassword = async () => {
+    if (!email) {
+      setErrors({ email: 'Please enter your email to reset password' });
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success('Password reset email sent. Check your inbox.');
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        setErrors({ email: 'No user found with this email' });
+      } else {
+        toast.error('Failed to send reset email. Please try again.');
+      }
+    }
+  };  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,10 +76,9 @@ const Login = ({ onRegister }) => {
       setErrors({});
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
-
       setTimeout(() => {
         navigate(from, { replace: true });
-        toast.success('Successfully logged in.')
+        toast.success('Successfully logged in.');
         setLoading(false);
       }, 300);
     } catch (error) {
@@ -91,7 +102,6 @@ const Login = ({ onRegister }) => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Email Field */}
           <div className="mb-4">
             <label className="block text-gray-800 font-medium mb-1">Email</label>
             <input
@@ -112,13 +122,12 @@ const Login = ({ onRegister }) => {
             )}
           </div>
 
-          {/* Password Field */}
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
               <label className="block text-gray-800 font-medium">Password</label>
               <button
                 type="button"
-                onClick={() => alert('Reset password functionality')}
+                onClick={handleResetPassword}
                 className="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition"
                 disabled={loading}
               >
@@ -158,7 +167,6 @@ const Login = ({ onRegister }) => {
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-[#3A63D8] text-white py-3 rounded-lg font-medium hover:bg-[#2A48B5] transition duration-200 my-4 disabled:opacity-50"
@@ -168,19 +176,16 @@ const Login = ({ onRegister }) => {
           </button>
         </form>
 
-        {/* General Error */}
         {errors.general && (
           <p className="text-red-500 text-sm text-center mt-4">{errors.general}</p>
         )}
 
-        {/* Or Divider */}
         <div className="my-6 relative flex items-center">
           <div className="flex-grow border-t border-gray-300"></div>
           <span className="flex-shrink mx-4 text-gray-600">Or continue with</span>
           <div className="flex-grow border-t border-gray-300"></div>
         </div>
 
-        {/* Google Button */}
         <button
           type="button"
           onClick={handleGoogleLogin}
@@ -208,7 +213,6 @@ const Login = ({ onRegister }) => {
           Google
         </button>
 
-        {/* Register Link */}
         <div className="mt-8 text-center">
           <p className="text-gray-600">
             Don&apos;t have an account?{' '}
