@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { CreditCard, Mail, SquarePen, User } from "lucide-react";
 
 const Profile = () => {
   const { user, loading } = useContext(AuthContext);
@@ -73,7 +74,7 @@ const Profile = () => {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-white text-orange-600 text-2xl font-bold">
+              <div className="w-full h-full flex items-center justify-center bg-white text-[#4A5565] text-2xl font-bold">
                 {user.displayName ? user.displayName.charAt(0) : "U"}
               </div>
             )}
@@ -87,9 +88,9 @@ const Profile = () => {
         </div>
         <Link
           to="/update-profile"
-          className="bg-white text-[#3A63D8] px-4 py-2 rounded shadow hover:bg-[#7FA9ED] hover:text-white transition text-center"
+          className="bg-white text-[#3A63D8] px-4 py-2 rounded shadow hover:bg-[#7FA9ED] hover:text-white transition text-center flex items-center gap-2"
         >
-          Update Profile
+          <SquarePen size={16}></SquarePen> Update Profile
         </Link>
       </div>
 
@@ -97,15 +98,15 @@ const Profile = () => {
         <h3 className="text-lg font-semibold mb-4">Account Information</h3>
         <div className="space-y-6 text-sm">
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
-            <span className="text-gray-600 text-base">Full Name</span>
+            <span className="text-gray-600 text-base flex items-center gap-1"><User size={16}></User> Full Name</span>
             <span className="md:text-lg text-base">{user.displayName}</span>
           </div>
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
-            <span className="text-gray-600 text-base">Email Address</span>
+            <span className="text-gray-600 text-base flex items-center gap-1"><Mail size={16}></Mail> Email Address</span>
             <span className="md:text-lg text-base">{user.email}</span>
           </div>
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
-            <span className="text-gray-600 text-base">Account Balance</span>
+            <span className="text-gray-600 text-base flex items-center gap-1"><CreditCard size={16}></CreditCard> Account Balance</span>
             <span className="text-green-600 font-semibold md:text-lg text-base">
               ৳{userBalance.toLocaleString()}
             </span>
@@ -120,23 +121,8 @@ const Profile = () => {
 
         {paidBills.length === 0 ? (
           <div className="text-center py-10 px-4">
-            <div className="bg-gray-100 p-4 rounded-full inline-block mb-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-credit-card h-8 w-8 text-gray-500"
-                aria-hidden="true"
-              >
-                <rect width="20" height="14" x="2" y="5" rx="2"></rect>
-                <line x1="2" x2="22" y1="10" y2="10"></line>
-              </svg>
+            <div className="bg-gray-100 text-gray-600 p-4 rounded-full inline-block mb-3">
+              <CreditCard size={30}></CreditCard>
             </div>
             <p className="text-gray-600">You have not paid any bills yet.</p>
             <Link
@@ -169,7 +155,7 @@ const Profile = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6 text-sm text-gray-600">
                     <p>Bill ID: {bill.id}</p>
                     <p>
@@ -181,7 +167,7 @@ const Profile = () => {
                   </div>
 
                   <div className="flex items-center gap-3 justify-between">
-                    <p className="text-orange-600 font-bold text-lg">
+                    <p className="text-green-600 font-bold text-lg">
                       ৳{bill.amount}
                     </p>
                     <button className="bg-green-600 transition text-white text-sm px-4 py-2 rounded flex items-center gap-1">

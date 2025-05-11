@@ -5,7 +5,7 @@ const routeTitles = {
   "/": "Home | FrostPay",
   "/bills": "Bills | FrostPay",
   "/profile": "Profile | FrostPay",
-  "/add-balance": "Add Balance | FrostPay",
+  "/contact": "Contact | FrostPay",
   "/update-profile": "Updata Profile | FrostPay",
   "/login": "Login | FrostPay",
   "/register": "Register | FrostPay",
