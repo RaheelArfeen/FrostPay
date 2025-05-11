@@ -58,6 +58,7 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     setLoading(true);
 
+    localStorage.clear()
     setUserBalance(10000);
 
     Object.keys(localStorage).forEach((key) => {
