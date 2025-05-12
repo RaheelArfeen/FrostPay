@@ -28,7 +28,7 @@ import Contact from "../Pages/Contact";
       children: [
         { path: '/', element: <Home /> },
         { path: '/bills', loader: billsLoader, element: <ProtectedRoute><Bills /></ProtectedRoute> },
-        { path: '/contact', element: <ProtectedRoute><Contact/></ProtectedRoute>},
+        { path: '/contact', element: <Contact/>},
         { path: '/profile', element: <ProtectedRoute><Profile /></ProtectedRoute> },
         { path: '/update-profile', element: <ProtectedRoute><UpdateProfile /></ProtectedRoute> },
         { path: '/bills/:id', element: <ProtectedRoute><BillsDetail /></ProtectedRoute>, loader: billsLoader, },
