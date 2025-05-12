@@ -10,7 +10,7 @@ const UpdateProfile = () => {
   const [preview, setPreview] = useState(user?.photoURL || '');
   const [balance, setBalance] = useState(() => {
     const stored = localStorage.getItem('userBalance');
-    return stored ? Number(stored) : 0;
+    return stored ? stored : 0;
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -76,7 +76,6 @@ const UpdateProfile = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
                 className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -112,8 +111,7 @@ const UpdateProfile = () => {
                 id="balance"
                 type="number"
                 value={balance}
-                onChange={(e) => setBalance(Number(e.target.value))}
-                min="0"
+                onChange={(e) => setBalance(e.target.value)}
                 className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:border-blue-500"
               />
             </div>

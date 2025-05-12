@@ -17,7 +17,7 @@ const Profile = () => {
   useEffect(() => {
     const storedBalance = localStorage.getItem("userBalance");
     if (storedBalance) {
-      setUserBalance(Number(storedBalance));
+      setUserBalance(storedBalance);
     }
 
     const bills = [];
@@ -70,7 +70,7 @@ const Profile = () => {
             {user.photoURL ? (
               <img
                 src={user.photoURL}
-                alt={user.displayName}
+                alt={user.displayName || 'User'}
                 className="w-full h-full object-cover"
               />
             ) : (
@@ -81,7 +81,7 @@ const Profile = () => {
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold">
-              {user.displayName}
+              {user.displayName || 'User'}
             </h2>
             <p>{user.email}</p>
           </div>
@@ -99,7 +99,7 @@ const Profile = () => {
         <div className="space-y-6 text-sm">
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
             <span className="text-gray-600 text-base flex items-center gap-1"><User size={16}></User> Full Name</span>
-            <span className="md:text-lg text-base">{user.displayName}</span>
+            <span className="md:text-lg text-base">{user.displayName || 'User'}</span>
           </div>
           <div className="flex justify-between items-center border-b pb-2 border-[#eaebed]">
             <span className="text-gray-600 text-base flex items-center gap-1"><Mail size={16}></Mail> Email Address</span>
