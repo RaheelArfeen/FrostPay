@@ -37,6 +37,22 @@ The purpose of Forst Pay is to simulate a real-world online bill payment system.
 - Integrate real-time database updates.
 - Enhance animations for more immersive winter effects.
 
+## Getting Started (Run Locally)
+
+To run this project on your local machine:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/RaheelArfeen/frostpay.git
+
+2. Navigate into the project folder:
+   ```bash
+   cd frostpay
+
+3. Then run it on localhost
+    ```bash
+    npm run dev
+
 ## Contributing
 
 This is an assignment-based personal project and not open for contributions at the moment, but feedback and suggestions are always welcome!
